@@ -1,0 +1,72 @@
+import type { Profile } from "@/types";
+
+export const profile: Profile = {
+  name: "凌·夜",
+  alias: "NEON_DEV",
+  bio: "前端工程师 / 数字美学探索者 / 开源贡献者。痴迷于在代码与设计的交汇处寻找可能性,相信优秀的产品诞生于工程严谨与艺术直觉的平衡。白天写架构,夜晚造轮子。",
+  avatar: "gradient-cyan-magenta",
+  location: "上海 · 中国",
+  roles: [
+    "前端工程师",
+    "交互设计师",
+    "开源贡献者",
+    "数字美学探索者",
+    "全栈造梦师",
+  ],
+  socials: [
+    { name: "GitHub", url: "https://github.com", icon: "Github", handle: "@neon-dev" },
+    { name: "Twitter", url: "https://twitter.com", icon: "Twitter", handle: "@neon_dev" },
+    { name: "Email", url: "mailto:hello@neon.dev", icon: "Mail", handle: "hello@neon.dev" },
+    { name: "掘金", url: "https://juejin.cn", icon: "BookOpen", handle: "@霓虹开发者" },
+  ],
+  timeline: [
+    {
+      year: "2026",
+      title: "独立开发者",
+      org: "NEON.STUDIO",
+      description: "创立个人工作室,专注于交互体验与数字产品设计,服务多个科技品牌。",
+      type: "milestone",
+    },
+    {
+      year: "2023 - 2026",
+      title: "高级前端工程师",
+      org: "某独角兽科技公司",
+      description: "主导前端架构升级,建立设计系统,推动性能优化使首屏加载提升 60%。",
+      type: "work",
+    },
+    {
+      year: "2020 - 2023",
+      title: "前端工程师",
+      org: "某互联网大厂",
+      description: "负责核心业务线前端开发,参与多个千万级用户产品迭代。",
+      type: "work",
+    },
+    {
+      year: "2016 - 2020",
+      title: "计算机科学与技术 · 本科",
+      org: "某 985 高校",
+      description: "系统学习计算机基础,参与 ACM 竞赛,萌生对前端的兴趣。",
+      type: "education",
+    },
+  ],
+  skills: [
+    { name: "React", level: 95, category: "frontend" },
+    { name: "TypeScript", level: 92, category: "frontend" },
+    { name: "Vue.js", level: 85, category: "frontend" },
+    { name: "Tailwind CSS", level: 93, category: "frontend" },
+    { name: "Framer Motion", level: 88, category: "frontend" },
+    { name: "Three.js", level: 75, category: "frontend" },
+    { name: "Node.js", level: 82, category: "backend" },
+    { name: "PostgreSQL", level: 70, category: "backend" },
+    { name: "Figma", level: 86, category: "design" },
+    { name: "Blender", level: 65, category: "design" },
+    { name: "Git", level: 90, category: "tools" },
+    { name: "Docker", level: 72, category: "tools" },
+  ],
+  stats: {
+    articles: 8,
+    views: 23456,
+    projects: 6,
+    years: 6,
+  },
+};

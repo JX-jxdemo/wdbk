@@ -1,0 +1,540 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==================== CSS 变量 - 霓虹色彩系统 ==================== */
+:root {
+  --color-bg: #0a0a0f;
+  --color-surface: #0f0f17;
+  --color-surface-2: #14141f;
+  --color-border: rgba(0, 240, 255, 0.15);
+  --color-border-hover: rgba(0, 240, 255, 0.4);
+
+  --neon-cyan: #00f0ff;
+  --neon-magenta: #ff006e;
+  --neon-purple: #7c3aed;
+  --neon-green: #39ff14;
+
+  --text-primary: #e4e4e7;
+  --text-muted: #a1a1aa;
+  --text-faint: #71717a;
+
+  --font-display: "Orbitron", system-ui, sans-serif;
+  --font-heading: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: "Noto Sans SC", "Space Grotesk", system-ui, sans-serif;
+}
+
+/* ==================== 基础重置 ==================== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ==================== 自定义滚动条 ==================== */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--neon-cyan), var(--neon-purple));
+  border-radius: 0;
+  border: 2px solid var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--neon-magenta), var(--neon-purple));
+}
+
+::selection {
+  background: var(--neon-cyan);
+  color: var(--color-bg);
+}
+
+/* ==================== 组件层 - 通用工具类 ==================== */
+@layer components {
+  /* 玻璃拟态卡片 */
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border);
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
+      0 8px 40px rgba(0, 0, 0, 0.45);
+  }
+
+  .glass-hover {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .glass-hover:hover {
+    border-color: var(--color-border-hover);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2),
+      0 0 40px rgba(0, 240, 255, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  }
+
+  /* 霓虹文字发光 */
+  .neon-text-cyan {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.6), 0 0 20px rgba(0, 240, 255, 0.3);
+  }
+
+  .neon-text-magenta {
+    color: var(--neon-magenta);
+    text-shadow: 0 0 8px rgba(255, 0, 110, 0.6), 0 0 20px rgba(255, 0, 110, 0.3);
+  }
+
+  .neon-text-purple {
+    color: var(--neon-purple);
+    text-shadow: 0 0 8px rgba(124, 58, 237, 0.6), 0 0 20px rgba(124, 58, 237, 0.3);
+  }
+
+  /* 霓虹边框 */
+  .neon-border-cyan {
+    border: 1px solid var(--neon-cyan);
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.4), inset 0 0 12px rgba(0, 240, 255, 0.1);
+  }
+
+  /* 渐变文字 */
+  .text-gradient-neon {
+    background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-purple) 50%, var(--neon-magenta) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* 网格背景 */
+  .bg-grid {
+    background-image: linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* 扫描线覆盖 */
+  .bg-scanlines::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 240, 255, 0.03) 0px,
+      rgba(0, 240, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* 章节内边距 */
+  .section-py {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  @media (max-width: 768px) {
+    .section-py {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+  }
+}
+
+/* ==================== 工具层 - 动画辅助 ==================== */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  /* 噪点纹理覆盖 */
+  .noise-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 2;
+  }
+}
+
+/* ==================== Markdown 正文样式 ==================== */
+.prose-cyber {
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  line-height: 1.85;
+}
+
+.prose-cyber h1,
+.prose-cyber h2,
+.prose-cyber h3,
+.prose-cyber h4 {
+  font-family: var(--font-heading);
+  color: #fff;
+  font-weight: 600;
+  scroll-margin-top: 6rem;
+}
+
+.prose-cyber h1 {
+  font-size: 2rem;
+  margin: 2.5rem 0 1.25rem;
+}
+
+.prose-cyber h2 {
+  font-size: 1.6rem;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+}
+
+.prose-cyber h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 40px;
+  height: 2px;
+  background: var(--neon-cyan);
+  box-shadow: 0 0 8px var(--neon-cyan);
+}
+
+.prose-cyber h3 {
+  font-size: 1.3rem;
+  margin: 2rem 0 0.75rem;
+  color: var(--neon-cyan);
+}
+
+.prose-cyber p {
+  margin: 1.25rem 0;
+}
+
+.prose-cyber a {
+  color: var(--neon-cyan);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.prose-cyber a:hover {
+  border-bottom-color: var(--neon-cyan);
+}
+
+.prose-cyber ul,
+.prose-cyber ol {
+  margin: 1.25rem 0;
+  padding-left: 1.5rem;
+}
+
+.prose-cyber ul {
+  list-style: none;
+}
+
+.prose-cyber ul li {
+  position: relative;
+  margin: 0.5rem 0;
+}
+
+.prose-cyber ul li::before {
+  content: "▸";
+  position: absolute;
+  left: -1.25rem;
+  color: var(--neon-cyan);
+}
+
+.prose-cyber ol {
+  list-style: decimal;
+}
+
+.prose-cyber ol li::marker {
+  color: var(--neon-cyan);
+}
+
+.prose-cyber blockquote {
+  margin: 1.5rem 0;
+  padding: 0.75rem 1.25rem;
+  border-left: 3px solid var(--neon-magenta);
+  background: rgba(255, 0, 110, 0.06);
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.prose-cyber code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: rgba(0, 240, 255, 0.1);
+  color: var(--neon-cyan);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+.prose-cyber pre {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background: #0d0d14 !important;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  overflow-x: auto;
+  position: relative;
+}
+
+.prose-cyber pre code {
+  background: transparent;
+  border: none;
+  color: #e4e4e7;
+  padding: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.prose-cyber hr {
+  margin: 2.5rem 0;
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+}
+
+.prose-cyber img {
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
+.prose-cyber table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+}
+
+.prose-cyber th,
+.prose-cyber td {
+  border: 1px solid var(--color-border);
+  padding: 0.6rem 1rem;
+  text-align: left;
+}
+
+.prose-cyber th {
+  background: rgba(0, 240, 255, 0.08);
+  color: var(--neon-cyan);
+  font-family: var(--font-heading);
+}
+
+/* ==================== highlight.js 自定义暗色主题 ==================== */
+.hljs {
+  color: #e4e4e7;
+  background: transparent;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #71717a;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-name,
+.hljs-tag {
+  color: #ff006e;
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-section,
+.hljs-attribute,
+.hljs-literal,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-addition {
+  color: #39ff14;
+}
+
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-attr,
+.hljs-variable,
+.hljs-meta {
+  color: #ffb800;
+}
+
+.hljs-function .hljs-title,
+.hljs-title.function_ {
+  color: #00f0ff;
+}
+
+.hljs-params {
+  color: #e4e4e7;
+}
+
+.hljs-deletion {
+  color: #ff006e;
+}
+
+/* ==================== 隐藏移动端自定义光标 ==================== */
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+/* ==================== 音乐播放器 range 滑块 ==================== */
+.neon-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: rgba(0, 240, 255, 0.15);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+.neon-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--neon-cyan);
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.7);
+  cursor: pointer;
+  border: none;
+}
+.neon-range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--neon-cyan);
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.7);
+  cursor: pointer;
+  border: none;
+}
+
+/* ==================== 公告卡片自动滚动 ==================== */
+.notice-auto-scroll {
+  position: relative;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 12px,
+    #000 calc(100% - 12px),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 12px,
+    #000 calc(100% - 12px),
+    transparent 100%
+  );
+}
+.notice-auto-scroll-inner {
+  animation: notice-scroll-up 35s linear infinite;
+}
+.notice-auto-scroll:hover .notice-auto-scroll-inner {
+  animation-play-state: paused;
+}
+.notice-auto-scroll-inner > p:last-child {
+  margin-top: 1rem;
+}
+@keyframes notice-scroll-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+/* ==================== 顶部公告横幅跑马灯 ==================== */
+.notice-marquee {
+  position: relative;
+  overflow: hidden;
+}
+.notice-marquee-inner {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: notice-marquee-scroll 40s linear infinite;
+}
+.notice-marquee:hover .notice-marquee-inner {
+  animation-play-state: paused;
+}
+@keyframes notice-marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ==================== 亮色主题适配 ==================== */
+:root.light body {
+  background-color: var(--color-bg);
+}
+
+:root.light .glass {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: var(--color-border);
+}
+
+:root.light .prose-cyber pre {
+  background: #f8f9fc !important;
+}
+
+:root.light .prose-cyber h2,
+:root.light .prose-cyber h3 {
+  color: var(--neon-cyan);
+}
+
+/* ==================== 公告横幅动画 ==================== */
+@keyframes notice-in {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.notice-banner-enter {
+  animation: notice-in 0.4s ease-out;
+}
