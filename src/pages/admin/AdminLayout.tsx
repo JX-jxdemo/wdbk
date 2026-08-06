@@ -8,6 +8,7 @@ import {
   Settings,
   Terminal,
   ExternalLink,
+  FolderOpen,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { cn } from "@/lib/utils";
@@ -16,6 +17,7 @@ const menu = [
   { to: "/admin", label: "仪表盘", icon: LayoutDashboard, end: true },
   { to: "/admin/users", label: "用户管理", icon: Users },
   { to: "/admin/likes", label: "好感度管理", icon: Heart },
+  { to: "/admin/resources", label: "资源仓库", icon: FolderOpen },
   { to: "/admin/music", label: "音乐播放器", icon: Music },
   { to: "/admin/notice", label: "公告系统", icon: Megaphone },
   { to: "/admin/settings", label: "站点设置", icon: Settings },

@@ -74,6 +74,32 @@ export interface Profile {
   };
 }
 
+// ==================== 资源仓库类型 ====================
+export type ResourceCategory = "tools" | "docs" | "source" | "learning";
+
+export interface ResourceItem {
+  id: string;
+  title: string;
+  category: ResourceCategory;
+  description: string;
+  url: string;
+  thumbnail?: string;
+  meta?: Record<string, string>;
+  updatedAt: string;
+  buttonText?: string;
+}
+
+export interface ResourceSubmission {
+  id: string;
+  title: string;
+  category: ResourceCategory;
+  description: string;
+  url: string;
+  submittedBy: string;
+  status: "pending" | "approved" | "rejected";
+  createdAt: string;
+}
+
 // ==================== 路由导航项 ====================
 export interface NavItem {
   label: string;

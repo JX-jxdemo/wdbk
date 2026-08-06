@@ -14,10 +14,8 @@ export const profile: Profile = {
     "全栈造梦师",
   ],
   socials: [
-    { name: "GitHub", url: "https://github.com", icon: "Github", handle: "@neon-dev" },
-    { name: "Twitter", url: "https://twitter.com", icon: "Twitter", handle: "@neon_dev" },
-    { name: "Email", url: "mailto:hello@neon.dev", icon: "Mail", handle: "hello@neon.dev" },
-    { name: "掘金", url: "https://juejin.cn", icon: "BookOpen", handle: "@霓虹开发者" },
+    { name: "GitHub", url: "https://github.com/JX-jxdemo/wdbk", icon: "Github", handle: "@JX-jxdemo" },
+    { name: "Email", url: "mailto:3922893004@qq.com", icon: "Mail", handle: "3922893004@qq.com" },
   ],
   timeline: [
     {

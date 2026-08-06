@@ -9,6 +9,7 @@ import likeRoutes from "./routes/like.js";
 import musicRoutes from "./routes/music.js";
 import noticeRoutes from "./routes/notice.js";
 import adminRoutes from "./routes/admin.js";
+import resourceRoutes from "./routes/resources.js";
 import { runBirthdayJob } from "./scheduler/birthday.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -26,6 +27,7 @@ app.use("/api/like", likeRoutes);
 app.use("/api/music", musicRoutes);
 app.use("/api/notice", noticeRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/resources", resourceRoutes);
 
 // 健康检查
 app.get("/api/health", (_req, res) => {

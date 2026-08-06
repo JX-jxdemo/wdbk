@@ -17,7 +17,7 @@ export default function Navbar() {
     const items = [
       { label: "首页", path: "/" },
       { label: "博客", path: "/blog" },
-      { label: "项目", path: "/projects" },
+      { label: "资源仓库", path: "/resources" },
       { label: "关于", path: "/about" },
     ];
     if (status.likeModuleEnabled) {

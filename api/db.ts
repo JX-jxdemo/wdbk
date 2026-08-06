@@ -194,6 +194,31 @@ db.exec(`
     birthday_day_template    TEXT NOT NULL DEFAULT '今天是 {username} 的生日，全站一起送上祝福！',
     birthday_post_template   TEXT NOT NULL DEFAULT '{username} 的生日周仍在继续，祝福不停！'
   );
+
+  CREATE TABLE IF NOT EXISTS resources (
+    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+    title         TEXT NOT NULL,
+    category      TEXT NOT NULL CHECK(category IN ('tools','docs','source','learning')),
+    description   TEXT NOT NULL,
+    url           TEXT NOT NULL,
+    thumbnail     TEXT,
+    meta          TEXT,
+    button_text   TEXT,
+    status        TEXT NOT NULL DEFAULT 'approved' CHECK(status IN ('approved','draft','archived')),
+    updated_at    TEXT NOT NULL DEFAULT (datetime('now'))
+  );
+
+  CREATE TABLE IF NOT EXISTS resource_submissions (
+    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+    title         TEXT NOT NULL,
+    category      TEXT NOT NULL CHECK(category IN ('tools','docs','source','learning')),
+    description   TEXT NOT NULL,
+    url           TEXT NOT NULL,
+    submitted_by  INTEGER NOT NULL,
+    status        TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending','approved','rejected')),
+    created_at    TEXT NOT NULL DEFAULT (datetime('now')),
+    FOREIGN KEY(submitted_by) REFERENCES users(id) ON DELETE CASCADE
+  );
 `);
 
 // ---- 默认数据初始化 ----
@@ -243,6 +268,32 @@ if (adminCount === 0) {
     `INSERT INTO users (username, password, role) VALUES (?, ?, 'admin')`
   ).run("admin", hash);
   console.log("[db] default admin created: admin / admin520774");
+}
+
+// ---- 默认资源数据 ----
+const ensureResources = db.prepare(`SELECT COUNT(*) as c FROM resources`);
+const resourceCount = (ensureResources.get() as { c: number }).c;
+if (resourceCount === 0) {
+  const now = new Date().toISOString().replace("T", " ").slice(0, 19);
+  const defaultResources = [
+    ["Visual Studio Code", "tools", "微软出品的免费开源代码编辑器,支持丰富的插件生态与多语言开发。", "https://code.visualstudio.com/", '{"系统":"跨平台","用途":"代码编辑器"}', now],
+    ["Node.js LTS", "tools", "基于 Chrome V8 引擎的 JavaScript 运行时,后端开发与工具链必备。", "https://nodejs.org/", '{"系统":"跨平台","用途":"JS 运行时"}', now],
+    ["Git", "tools", "分布式版本控制系统,是现代软件开发协作的基石。", "https://git-scm.com/", '{"系统":"跨平台","用途":"版本控制"}', now],
+    ["赛博朋克壁纸合集", "docs", "高分辨率赛博朋克风格壁纸包,包含城市夜景、霓虹光效等主题。", "https://www.pixiv.net/", '{"类型":"壁纸","数量":"100+"}', now],
+    ["毕业设计答辩 PPT 模板", "docs", "通用答辩模板,支持多章节、时间线、数据图表等布局。", "https://www.canva.com/", '{"类型":"PPT 模板"}', now],
+    ["NEON.DEV 博客系统", "source", "本站点完整源码,基于 React + TypeScript + Express + SQLite 全栈实现。", "https://github.com/JX-jxdemo/wdbk", '{"语言":"TypeScript"}', now],
+    ["React", "source", "用于构建用户界面的 JavaScript 库,由 Meta 开源维护。", "https://github.com/facebook/react", '{"语言":"JavaScript"}', now],
+    ["Vite", "source", "下一代前端工具链,提供极速的开发体验与高效的构建能力。", "https://github.com/vitejs/vite", '{"语言":"TypeScript"}', now],
+    ["MDN Web 文档", "learning", "Mozilla 维护的 Web 开发者权威文档,覆盖 HTML/CSS/JavaScript 完整参考。", "https://developer.mozilla.org/", '{"平台":"MDN"}', now],
+    ["React 官方文档", "learning", "React 团队维护的最新指南与 API 参考。", "https://react.dev/", '{"平台":"React"}', now],
+    ["现代 JavaScript 教程", "learning", "免费的现代 JavaScript 全教程,覆盖基础到进阶。", "https://zh.javascript.info/", '{"语言":"中文"}', now],
+  ];
+  const insertResource = db.prepare(
+    `INSERT INTO resources (title, category, description, url, meta, status, updated_at)
+     VALUES (?, ?, ?, ?, ?, 'approved', ?)`
+  );
+  defaultResources.forEach((r) => insertResource.run(...r));
+  console.log("[db] default resources seeded:", defaultResources.length);
 }
 
 saveDb();

@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
-import { Github, Twitter, Mail, BookOpen } from "lucide-react";
+import { Github, Mail } from "lucide-react";
 
 const socials = [
-  { name: "GitHub", url: "https://github.com", icon: Github },
-  { name: "Twitter", url: "https://twitter.com", icon: Twitter },
-  { name: "Email", url: "mailto:hello@neon.dev", icon: Mail },
-  { name: "掘金", url: "https://juejin.cn", icon: BookOpen },
+  { name: "GitHub", url: "https://github.com/JX-jxdemo/wdbk", icon: Github },
+  { name: "Email", url: "mailto:3922893004@qq.com", icon: Mail },
 ];
 
 export default function Footer() {

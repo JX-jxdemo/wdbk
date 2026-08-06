@@ -123,7 +123,7 @@ export default function About() {
           <SectionTitle
             eyebrow="TIMELINE"
             title="经历轨迹"
-            description="从校园到职场,从工程师到独立开发者。"
+            description="从校园到赛场,从普通人到工程师。"
           />
           <Timeline items={profile.timeline} />
         </div>
