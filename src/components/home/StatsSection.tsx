@@ -43,13 +43,9 @@ export default function StatsSection() {
           <div className="absolute left-4 top-4 font-mono text-xs text-neon-cyan/40">
             [ DATA_STREAM ]
           </div>
-          <div className="absolute right-4 top-4 font-mono text-xs text-ink-faint">
-            real_time
-          </div>
 
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          <div className="grid grid-cols-3 gap-8">
             <StatItem label="已发布文章" value={stats.articles} />
-            <StatItem label="总访问量" value={stats.views} />
             <StatItem label="开源项目" value={stats.projects} />
             <StatItem label="编程年数" value={stats.years} suffix="+" />
           </div>
