@@ -271,11 +271,6 @@ function AuthModal({
             {mode === "login" ? "去注册" : "去登录"}
           </button>
         </div>
-        {mode === "login" && (
-          <div className="mt-3 rounded border border-[var(--color-border)] bg-base-900/40 px-3 py-2 text-center text-[11px] text-ink-faint">
-            测试管理员：admin / admin123
-          </div>
-        )}
       </motion.div>
     </motion.div>
   );

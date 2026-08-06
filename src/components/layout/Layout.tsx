@@ -27,18 +27,15 @@ export default function Layout({ children }: { children: ReactNode }) {
       <Navbar />
 
       {/* 主内容 + 页面过渡 */}
-      <AnimatePresence mode="wait">
-        <motion.main
-          key={location.pathname}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -12 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          className="relative"
-        >
-          {children}
-        </motion.main>
-      </AnimatePresence>
+      <motion.main
+        key={location.pathname}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
+        className="relative"
+      >
+        {children}
+      </motion.main>
 
       {/* 页脚 */}
       <Footer />

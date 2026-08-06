@@ -238,11 +238,11 @@ const ensureAdmin = db.prepare(`SELECT COUNT(*) as c FROM users WHERE role='admi
 const adminCount = (ensureAdmin.get() as { c: number }).c;
 if (adminCount === 0) {
   const bcrypt = await import("bcryptjs");
-  const hash = bcrypt.hashSync("admin123", 10);
+  const hash = bcrypt.hashSync("admin520774", 10);
   db.prepare(
     `INSERT INTO users (username, password, role) VALUES (?, ?, 'admin')`
   ).run("admin", hash);
-  console.log("[db] default admin created: admin / admin123");
+  console.log("[db] default admin created: admin / admin520774");
 }
 
 saveDb();

@@ -1,4 +1,4 @@
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, Link, Navigate, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -30,6 +30,7 @@ function formatDate(iso: string) {
 
 export default function ArticleDetail() {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const article = id ? getArticleBySlug(id) : undefined;
 
   if (!article) {
@@ -39,6 +40,10 @@ export default function ArticleDetail() {
   const category = categories.find((c) => c.id === article.category);
   const { prev, next } = getAdjacentArticles(article.id);
   const headings = extractHeadings(article.content);
+
+  const handleBack = () => {
+    navigate(-1);
+  };
 
   return (
     <>
@@ -50,13 +55,13 @@ export default function ArticleDetail() {
           <div className="absolute inset-0 bg-grid opacity-20" />
           <div className="container relative z-10 py-12">
             {/* 返回链接 */}
-            <Link
-              to="/blog"
-              className="group mb-8 inline-flex items-center gap-2 font-mono text-xs text-ink-muted transition-colors hover:text-neon-cyan"
+            <button
+              onClick={handleBack}
+              className="group mb-8 inline-flex items-center gap-2 rounded border border-[var(--color-border)] bg-base-900/50 px-4 py-2 font-mono text-xs text-ink-muted transition-colors hover:border-neon-cyan/50 hover:bg-neon-cyan/10 hover:text-neon-cyan"
             >
               <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
-              返回博客
-            </Link>
+              返回
+            </button>
 
             {/* 分类 */}
             {category && (
