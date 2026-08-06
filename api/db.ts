@@ -5,9 +5,13 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const DATA_DIR = process.env.DATA_DIR
-  ? path.resolve(process.env.DATA_DIR)
-  : path.resolve(__dirname, "../data");
+// Railway 持久化存储: 优先使用持久化卷路径
+const RAILWAY_PERSISTENT = process.env.RAILWAY_PERSISTENT_STORAGE;
+const DATA_DIR = RAILWAY_PERSISTENT
+  ? path.join(RAILWAY_PERSISTENT, "data")
+  : process.env.DATA_DIR
+    ? path.resolve(process.env.DATA_DIR)
+    : path.resolve(__dirname, "../data");
 const DB_PATH = path.join(DATA_DIR, "app.db");
 
 fs.mkdirSync(DATA_DIR, { recursive: true });
