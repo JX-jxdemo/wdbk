@@ -8,7 +8,7 @@ export default function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label="切换主题"
-      className="glass glass-hover flex h-9 w-9 items-center justify-center rounded text-neon-cyan"
+      className="glass glass-hover flex h-9 w-9 items-center justify-center rounded text-[var(--color-primary)]"
     >
       <motion.span
         key={theme}

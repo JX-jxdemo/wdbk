@@ -39,11 +39,11 @@ export default function NoticeSection() {
     <section className="section-py pt-12">
       <div className="container">
         <div className="mb-6 flex items-center gap-3">
-          <Megaphone className="h-6 w-6 text-neon-cyan" />
-          <h2 className="font-display text-2xl font-bold text-white">
+          <Megaphone className="h-6 w-6 text-[var(--color-primary)]" />
+          <h2 className="font-heading text-2xl font-bold text-[var(--text-primary)]">
             站点公告
           </h2>
-          <div className="ml-2 h-px flex-1 bg-gradient-to-r from-neon-cyan/40 to-transparent" />
+          <div className="ml-2 h-px flex-1 bg-gradient-to-r from-[var(--color-primary)]/40 to-transparent" />
         </div>
         <div ref={containerRef} className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {notices.map((n, i) => (
@@ -54,26 +54,26 @@ export default function NoticeSection() {
               transition={{ delay: i * 0.06 }}
               className={cn(
                 "glass glass-hover relative flex h-56 flex-col overflow-hidden rounded-lg",
-                n.isPinned && "border-neon-cyan/40"
+                n.isPinned && "border-[var(--color-primary)]/40"
               )}
             >
               {/* 标题区 - 固定不动 */}
-              <div className="flex items-center gap-2 border-b border-[var(--color-border)] bg-base-900/40 px-4 py-3 pr-8">
+              <div className="flex items-center gap-2 border-b border-[var(--color-border)] bg-[var(--color-surface)]/40 px-4 py-3 pr-8">
                 {n.noticeType === "birthday" ? (
-                  <Cake className="h-4 w-4 flex-shrink-0 text-neon-magenta" />
+                  <Cake className="h-4 w-4 flex-shrink-0 text-[#f97316]" />
                 ) : (
-                  <Megaphone className="h-4 w-4 flex-shrink-0 text-neon-cyan" />
+                  <Megaphone className="h-4 w-4 flex-shrink-0 text-[var(--color-primary)]" />
                 )}
-                <span className="truncate font-bold text-white">{n.title}</span>
+                <span className="truncate font-bold text-[var(--text-primary)]">{n.title}</span>
                 {n.isPinned && (
-                  <span className="flex-shrink-0 rounded bg-neon-cyan/20 px-1.5 py-0.5 text-[10px] font-bold text-neon-cyan">
+                  <span className="flex-shrink-0 rounded bg-[var(--color-primary)]/20 px-1.5 py-0.5 text-[10px] font-bold text-[var(--color-primary)]">
                     置顶
                   </span>
                 )}
               </div>
               <button
                 onClick={() => dismiss(n.id)}
-                className="absolute right-2 top-2 z-10 rounded p-1 text-ink-faint hover:text-neon-magenta"
+                className="absolute right-2 top-2 z-10 rounded p-1 text-[var(--text-faint)] hover:text-[#f97316]"
                 aria-label="关闭"
               >
                 <X className="h-3 w-3" />
@@ -82,17 +82,17 @@ export default function NoticeSection() {
               {/* 内容区 - 自动滚动，原生事件控制悬停暂停 */}
               <div className="notice-auto-scroll flex-1 overflow-hidden px-4 py-3">
                 <div className="notice-auto-scroll-inner">
-                  <p className="whitespace-pre-wrap text-sm leading-relaxed text-ink-muted">
+                  <p className="whitespace-pre-wrap text-sm leading-relaxed text-[var(--text-secondary)]">
                     {n.content}
                   </p>
-                  <p className="whitespace-pre-wrap text-sm leading-relaxed text-ink-muted">
+                  <p className="whitespace-pre-wrap text-sm leading-relaxed text-[var(--text-secondary)]">
                     {n.content}
                   </p>
                 </div>
               </div>
 
               {/* 底部日期 - 固定不动 */}
-              <div className="border-t border-[var(--color-border)] bg-base-900/40 px-4 py-2 font-mono text-[10px] text-ink-faint">
+              <div className="border-t border-[var(--color-border)] bg-[var(--color-surface)]/40 px-4 py-2 font-mono text-[10px] text-[var(--text-faint)]">
                 {n.startAt.slice(0, 10)} ~ {n.endAt.slice(0, 10)}
               </div>
             </motion.div>

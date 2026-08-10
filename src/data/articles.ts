@@ -2,10 +2,10 @@ import type { Article, Category } from "@/types";
 
 // ==================== 分类 ====================
 export const categories: Category[] = [
-  { id: "frontend", name: "前端工程", slug: "frontend", color: "#00f0ff" },
-  { id: "design", name: "设计美学", slug: "design", color: "#ff006e" },
-  { id: "engineering", name: "工程实践", slug: "engineering", color: "#7c3aed" },
-  { id: "thoughts", name: "随想杂谈", slug: "thoughts", color: "#39ff14" },
+  { id: "frontend", name: "前端工程", slug: "frontend", color: "var(--color-primary)" },
+  { id: "design", name: "设计美学", slug: "design", color: "#f97316" },
+  { id: "engineering", name: "工程实践", slug: "engineering", color: "#8b5cf6" },
+  { id: "thoughts", name: "随想杂谈", slug: "thoughts", color: "#22c55e" },
 ];
 
 // ==================== 文章列表 ====================

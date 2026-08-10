@@ -20,12 +20,12 @@ function StatItem({
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="font-display text-4xl font-black text-gradient-neon sm:text-5xl md:text-6xl"
+        className="font-heading text-4xl font-bold text-gradient-sky sm:text-5xl md:text-6xl"
       >
         {count.toLocaleString()}
         {suffix}
       </motion.div>
-      <div className="mt-2 font-mono text-xs uppercase tracking-widest text-ink-faint">
+      <div className="mt-2 font-mono text-xs uppercase tracking-widest text-[var(--text-faint)]">
         {label}
       </div>
     </div>
@@ -38,10 +38,10 @@ export default function StatsSection() {
   return (
     <section className="section-py">
       <div className="container">
-        <div className="glass relative overflow-hidden rounded-2xl px-6 py-12 sm:px-12">
+        <div className="glass glass-hover relative overflow-hidden rounded-2xl px-6 py-12 sm:px-12">
           {/* 装饰角标 */}
-          <div className="absolute left-4 top-4 font-mono text-xs text-neon-cyan/40">
-            [ DATA_STREAM ]
+          <div className="absolute left-4 top-4 font-mono text-xs text-[var(--color-primary)]/40">
+            统计数据
           </div>
 
           <div className="grid grid-cols-3 gap-8">
@@ -51,7 +51,7 @@ export default function StatsSection() {
           </div>
 
           {/* 底部分割线 */}
-          <div className="mt-10 h-px bg-gradient-to-r from-transparent via-neon-cyan/30 to-transparent" />
+          <div className="mt-10 h-px bg-gradient-to-r from-transparent via-[var(--color-primary)]/30 to-transparent" />
         </div>
       </div>
     </section>

@@ -56,7 +56,7 @@ export default function ArticleCard({
             </div>
             {/* 标题水印 */}
             <div className="absolute bottom-0 left-0 right-0 z-[1] flex items-end justify-between p-4">
-              <span className="font-display text-3xl font-black text-white/10">
+              <span className="font-heading text-3xl font-bold text-[var(--text-primary)]/10">
                 {String(article.id).padStart(2, "0")}
               </span>
             </div>
@@ -68,14 +68,14 @@ export default function ArticleCard({
           <h3
             className={
               featured
-                ? "font-heading text-xl font-bold text-white transition-colors group-hover:text-neon-cyan"
-                : "font-heading text-lg font-bold text-white transition-colors group-hover:text-neon-cyan"
+                ? "font-heading text-xl font-bold text-[var(--text-primary)] transition-colors group-hover:text-[var(--color-primary)]"
+                : "font-heading text-lg font-bold text-[var(--text-primary)] transition-colors group-hover:text-[var(--color-primary)]"
             }
           >
             {article.title}
           </h3>
 
-          <p className="mt-2 line-clamp-2 flex-1 text-sm text-ink-muted">
+          <p className="mt-2 line-clamp-2 flex-1 text-sm text-[var(--text-secondary)]">
             {article.excerpt}
           </p>
 
@@ -89,7 +89,7 @@ export default function ArticleCard({
           </div>
 
           {/* 元信息 */}
-          <div className="mt-4 flex items-center gap-4 border-t border-[var(--color-border)] pt-4 font-mono text-xs text-ink-faint">
+          <div className="mt-4 flex items-center gap-4 border-t border-[var(--color-border)] pt-4 font-mono text-xs text-[var(--text-faint)]">
             <span>{formatDate(article.publishedAt)}</span>
             <span className="flex items-center gap-1">
               <Clock className="h-3 w-3" />

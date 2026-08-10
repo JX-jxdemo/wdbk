@@ -9,7 +9,7 @@ interface SectionTitleProps {
   className?: string;
 }
 
-/** 章节标题:带霓虹眉标、大标题与描述 */
+/** 章节标题:眉标、大标题与描述 */
 export default function SectionTitle({
   eyebrow,
   title,
@@ -34,14 +34,14 @@ export default function SectionTitle({
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className={cn(
-            "mb-3 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neon-cyan",
+            "mb-3 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-[var(--color-primary)]",
             isCenter && "justify-center"
           )}
         >
-          <span className="h-px w-8 bg-neon-cyan shadow-[0_0_8px_var(--neon-cyan)]" />
+          <span className="h-px w-8 bg-[var(--color-primary)]" />
           {eyebrow}
           {isCenter && (
-            <span className="h-px w-8 bg-neon-cyan shadow-[0_0_8px_var(--neon-cyan)]" />
+            <span className="h-px w-8 bg-[var(--color-primary)]" />
           )}
         </motion.div>
       )}
@@ -51,7 +51,7 @@ export default function SectionTitle({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="font-heading text-3xl font-bold text-white sm:text-4xl md:text-5xl"
+        className="font-heading text-3xl font-bold text-[var(--text-primary)] sm:text-4xl md:text-5xl"
       >
         {title}
       </motion.h2>
@@ -63,7 +63,7 @@ export default function SectionTitle({
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className={cn(
-            "mt-4 max-w-2xl text-ink-muted",
+            "mt-4 max-w-2xl text-[var(--text-secondary)]",
             isCenter && "mx-auto"
           )}
         >

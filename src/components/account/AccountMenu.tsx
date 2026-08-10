@@ -39,15 +39,15 @@ export default function AccountMenu() {
         <>
           <button
             onClick={() => setOpen((v) => !v)}
-            className="glass glass-hover flex h-9 items-center gap-2 rounded px-3 text-sm text-white"
+            className="glass glass-hover flex h-9 items-center gap-2 rounded px-3 text-sm text-[var(--text-primary)]"
             aria-label="账号菜单"
           >
-            <User className="h-4 w-4 text-neon-cyan" />
+            <User className="h-4 w-4 text-[var(--color-primary)]" />
             <span className="hidden max-w-[120px] truncate font-mono sm:inline">
               {user.username}
             </span>
             {user.role === "admin" && (
-              <span className="hidden rounded bg-neon-magenta/20 px-1.5 py-0.5 text-[10px] font-bold text-neon-magenta md:inline">
+              <span className="hidden rounded bg-[#f97316]/20 px-1.5 py-0.5 text-[10px] font-bold text-[#f97316] md:inline">
                 ADMIN
               </span>
             )}
@@ -61,10 +61,10 @@ export default function AccountMenu() {
                 className="glass absolute right-0 top-11 z-50 w-48 overflow-hidden rounded-lg border-[var(--color-border)]"
               >
                 <div className="border-b border-[var(--color-border)] px-4 py-3">
-                  <div className="truncate font-mono text-sm text-white">
+                  <div className="truncate font-mono text-sm text-[var(--text-primary)]">
                     {user.username}
                   </div>
-                  <div className="text-xs text-ink-muted">
+                  <div className="text-xs text-[var(--text-muted)]">
                     {user.role === "admin" ? "管理员" : "普通用户"}
                   </div>
                 </div>
@@ -96,14 +96,14 @@ export default function AccountMenu() {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setAuthOpen("login")}
-            className="glass glass-hover flex h-9 items-center gap-1.5 rounded px-3 text-sm text-neon-cyan"
+            className="glass glass-hover flex h-9 items-center gap-1.5 rounded px-3 text-sm text-[var(--color-primary)]"
           >
             <LogIn className="h-4 w-4" />
             <span className="hidden sm:inline">登录</span>
           </button>
           <button
             onClick={() => setAuthOpen("register")}
-            className="flex h-9 items-center gap-1.5 rounded border border-neon-magenta/40 bg-neon-magenta/10 px-3 text-sm text-neon-magenta transition hover:bg-neon-magenta/20"
+            className="btn-secondary"
           >
             <UserPlus className="h-4 w-4" />
             <span className="hidden sm:inline">注册</span>
@@ -149,8 +149,8 @@ function MenuItem({
       className={cn(
         "flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm transition-colors",
         danger
-          ? "text-neon-magenta hover:bg-neon-magenta/10"
-          : "text-ink-muted hover:bg-white/5 hover:text-white"
+          ? "text-[#f97316] hover:bg-[#f97316]/10"
+          : "text-[var(--text-secondary)] hover:bg-[var(--color-primary)]/5 hover:text-[var(--text-primary)]"
       )}
     >
       {icon}
@@ -193,7 +193,7 @@ function AuthModal({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-base-900/80 backdrop-blur-md"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-[var(--color-bg)]/80 backdrop-blur-md"
       onClick={onClose}
     >
       <motion.div
@@ -205,21 +205,21 @@ function AuthModal({
       >
         <button
           onClick={onClose}
-          className="absolute right-3 top-3 text-ink-muted hover:text-white"
+          className="absolute right-3 top-3 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
         >
           <X className="h-5 w-5" />
         </button>
-        <h2 className="mb-1 font-display text-2xl font-bold text-white">
+        <h2 className="mb-1 font-heading text-2xl font-bold text-[var(--text-primary)]">
           {mode === "login" ? "登录" : "注册"}
         </h2>
-        <p className="mb-5 text-xs text-ink-muted">
+        <p className="mb-5 text-xs text-[var(--text-muted)]">
           {mode === "login"
             ? "登录后可操作好感度、进入后台"
             : "创建账号以解锁更多功能"}
         </p>
         <form onSubmit={submit} className="space-y-4">
           <div>
-            <label className="mb-1 block font-mono text-xs text-ink-muted">
+            <label className="mb-1 block font-mono text-xs text-[var(--text-muted)]">
               用户名
             </label>
             <input
@@ -230,12 +230,12 @@ function AuthModal({
               minLength={3}
               maxLength={20}
               required
-              className="w-full rounded border border-[var(--color-border)] bg-base-900/60 px-3 py-2 font-mono text-sm text-white outline-none focus:border-neon-cyan"
+              className="input-field"
               placeholder="3-20 个字符"
             />
           </div>
           <div>
-            <label className="mb-1 block font-mono text-xs text-ink-muted">
+            <label className="mb-1 block font-mono text-xs text-[var(--text-muted)]">
               密码
             </label>
             <input
@@ -244,12 +244,12 @@ function AuthModal({
               onChange={(e) => setPassword(e.target.value)}
               minLength={6}
               required
-              className="w-full rounded border border-[var(--color-border)] bg-base-900/60 px-3 py-2 font-mono text-sm text-white outline-none focus:border-neon-cyan"
+              className="input-field"
               placeholder="至少 6 位"
             />
           </div>
           {error && (
-            <div className="flex items-center gap-2 rounded border border-neon-magenta/40 bg-neon-magenta/10 px-3 py-2 text-sm text-neon-magenta">
+            <div className="flex items-center gap-2 rounded border border-[#f97316]/40 bg-[#f97316]/10 px-3 py-2 text-sm text-[#f97316]">
               <AlertCircle className="h-4 w-4 flex-shrink-0" />
               <span>{error}</span>
             </div>
@@ -257,16 +257,16 @@ function AuthModal({
           <button
             type="submit"
             disabled={busy}
-            className="w-full rounded border border-neon-cyan/40 bg-neon-cyan/10 py-2.5 font-display text-sm font-bold tracking-wide text-neon-cyan transition hover:bg-neon-cyan/20 disabled:opacity-50"
+            className="btn-primary w-full justify-center disabled:opacity-50"
           >
             {busy ? "处理中..." : mode === "login" ? "登录" : "注册"}
           </button>
         </form>
-        <div className="mt-4 text-center text-xs text-ink-muted">
+        <div className="mt-4 text-center text-xs text-[var(--text-muted)]">
           {mode === "login" ? "还没有账号？" : "已有账号？"}
           <button
             onClick={() => onSwitch(mode === "login" ? "register" : "login")}
-            className="ml-1 text-neon-cyan hover:underline"
+            className="ml-1 text-[var(--color-primary)] hover:underline"
           >
             {mode === "login" ? "去注册" : "去登录"}
           </button>

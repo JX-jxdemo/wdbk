@@ -112,10 +112,10 @@ export default function AdminNotice() {
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="font-display text-2xl font-bold text-white">公告系统</h1>
+        <h1 className="font-heading text-2xl font-bold text-[var(--text-primary)]">公告系统</h1>
         <button
           onClick={openCreate}
-          className="flex items-center gap-1 rounded border border-neon-cyan/40 bg-neon-cyan/10 px-4 py-2 text-sm font-bold text-neon-cyan hover:bg-neon-cyan/20"
+          className="flex items-center gap-1 rounded border border-[var(--color-primary)]/40 bg-[var(--color-primary)]/10 px-4 py-2 text-sm font-bold text-[var(--color-primary)] hover:bg-[var(--color-primary)]/20"
         >
           <Plus className="h-4 w-4" /> 新建公告
         </button>
@@ -128,25 +128,25 @@ export default function AdminNotice() {
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
                   {n.noticeType === "birthday" ? (
-                    <Cake className="h-4 w-4 text-neon-magenta" />
+                    <Cake className="h-4 w-4 text-[#f97316]" />
                   ) : (
-                    <Megaphone className="h-4 w-4 text-neon-cyan" />
+                    <Megaphone className="h-4 w-4 text-[var(--color-primary)]" />
                   )}
-                  <span className="font-bold text-white">{n.title}</span>
+                  <span className="font-bold text-[var(--text-primary)]">{n.title}</span>
                   {n.isPinned && (
-                    <span className="rounded bg-neon-cyan/20 px-1.5 py-0.5 text-[10px] text-neon-cyan">
+                    <span className="rounded bg-[var(--color-primary)]/20 px-1.5 py-0.5 text-[10px] text-[var(--color-primary)]">
                       置顶
                     </span>
                   )}
                   {n.noticeType === "birthday" && (
-                    <span className="rounded bg-neon-magenta/20 px-1.5 py-0.5 text-[10px] text-neon-magenta">
+                    <span className="rounded bg-[#f97316]/20 px-1.5 py-0.5 text-[10px] text-[#f97316]">
                       生日
                     </span>
                   )}
                   <span
                     className={`rounded px-1.5 py-0.5 text-[10px] ${
                       n.status === 1
-                        ? "bg-neon-green/20 text-neon-green"
+                        ? "bg-[#22c55e]/20 text-[#22c55e]"
                         : "bg-ink-faint/20 text-ink-faint"
                     }`}
                   >
@@ -156,10 +156,10 @@ export default function AdminNotice() {
                     P{n.priority}
                   </span>
                 </div>
-                <p className="mt-1 line-clamp-2 text-sm text-ink-muted">
+                <p className="mt-1 line-clamp-2 text-sm text-[var(--text-secondary)]">
                   {n.content}
                 </p>
-                <div className="mt-2 font-mono text-[10px] text-ink-faint">
+                <div className="mt-2 font-mono text-[10px] text-[var(--text-faint)]">
                   {n.startAt.slice(0, 10)} ~ {n.endAt.slice(0, 10)}
                   {n.targetUsername ? ` · 用户: ${n.targetUsername}` : ""}
                 </div>
@@ -167,13 +167,13 @@ export default function AdminNotice() {
               <div className="flex flex-shrink-0 gap-1">
                 <button
                   onClick={() => openEdit(n)}
-                  className="rounded p-1.5 text-ink-muted hover:text-neon-cyan"
+                  className="rounded p-1.5 text-[var(--text-secondary)] hover:text-[var(--color-primary)]"
                 >
                   <Save className="h-3.5 w-3.5" />
                 </button>
                 <button
                   onClick={() => del(n)}
-                  className="rounded p-1.5 text-ink-muted hover:text-neon-magenta"
+                  className="rounded p-1.5 text-[var(--text-secondary)] hover:text-[#f97316]"
                 >
                   <Trash2 className="h-3.5 w-3.5" />
                 </button>
@@ -182,7 +182,7 @@ export default function AdminNotice() {
           </div>
         ))}
         {list.length === 0 && (
-          <div className="glass rounded-xl py-12 text-center text-ink-muted">
+          <div className="glass rounded-xl py-12 text-center text-[var(--text-secondary)]">
             暂无公告
           </div>
         )}
@@ -190,7 +190,7 @@ export default function AdminNotice() {
 
       {(creating || editing) && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-base-900/80 p-4 backdrop-blur-md"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-[var(--color-bg)]/80 p-4 backdrop-blur-md"
           onClick={() => {
             setCreating(false);
             setEditing(null);
@@ -201,7 +201,7 @@ export default function AdminNotice() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="mb-4 flex items-center justify-between">
-              <h3 className="font-display text-lg font-bold text-white">
+              <h3 className="font-heading text-lg font-bold text-[var(--text-primary)]">
                 {creating ? "新建公告" : "编辑公告"}
               </h3>
               <button
@@ -209,90 +209,90 @@ export default function AdminNotice() {
                   setCreating(false);
                   setEditing(null);
                 }}
-                className="text-ink-muted"
+                className="text-[var(--text-secondary)]"
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
             <div className="space-y-3">
               <div>
-                <label className="mb-1 block text-xs text-ink-muted">标题</label>
+                <label className="mb-1 block text-xs text-[var(--text-secondary)]">标题</label>
                 <input
                   type="text"
                   value={draft.title}
                   onChange={(e) => setDraft({ ...draft, title: e.target.value })}
-                  className="w-full rounded border border-[var(--color-border)] bg-base-900/60 px-3 py-2 text-sm text-white"
+                  className="w-full rounded border border-[var(--color-border)] bg-[var(--color-bg)]/60 px-3 py-2 text-sm text-[var(--text-primary)]"
                   placeholder="公告标题"
                 />
               </div>
               <div>
-                <label className="mb-1 block text-xs text-ink-muted">正文</label>
+                <label className="mb-1 block text-xs text-[var(--text-secondary)]">正文</label>
                 <textarea
                   value={draft.content}
                   onChange={(e) => setDraft({ ...draft, content: e.target.value })}
                   rows={4}
-                  className="w-full rounded border border-[var(--color-border)] bg-base-900/60 px-3 py-2 text-sm text-white"
+                  className="w-full rounded border border-[var(--color-border)] bg-[var(--color-bg)]/60 px-3 py-2 text-sm text-[var(--text-primary)]"
                   placeholder="公告正文"
                 />
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="mb-1 block text-xs text-ink-muted">开始日期</label>
+                  <label className="mb-1 block text-xs text-[var(--text-secondary)]">开始日期</label>
                   <input
                     type="date"
                     value={draft.startAt}
                     onChange={(e) => setDraft({ ...draft, startAt: e.target.value })}
-                    className="w-full rounded border border-[var(--color-border)] bg-base-900/60 px-3 py-2 text-sm text-white"
+                    className="w-full rounded border border-[var(--color-border)] bg-[var(--color-bg)]/60 px-3 py-2 text-sm text-[var(--text-primary)]"
                   />
                 </div>
                 <div>
-                  <label className="mb-1 block text-xs text-ink-muted">结束日期</label>
+                  <label className="mb-1 block text-xs text-[var(--text-secondary)]">结束日期</label>
                   <input
                     type="date"
                     value={draft.endAt}
                     onChange={(e) => setDraft({ ...draft, endAt: e.target.value })}
-                    className="w-full rounded border border-[var(--color-border)] bg-base-900/60 px-3 py-2 text-sm text-white"
+                    className="w-full rounded border border-[var(--color-border)] bg-[var(--color-bg)]/60 px-3 py-2 text-sm text-[var(--text-primary)]"
                   />
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-3">
                 <div>
-                  <label className="mb-1 block text-xs text-ink-muted">优先级</label>
+                  <label className="mb-1 block text-xs text-[var(--text-secondary)]">优先级</label>
                   <input
                     type="number"
                     value={draft.priority}
                     onChange={(e) =>
                       setDraft({ ...draft, priority: Number(e.target.value) })
                     }
-                    className="w-full rounded border border-[var(--color-border)] bg-base-900/60 px-3 py-2 text-sm text-white"
+                    className="w-full rounded border border-[var(--color-border)] bg-[var(--color-bg)]/60 px-3 py-2 text-sm text-[var(--text-primary)]"
                   />
                 </div>
-                <label className="flex items-end gap-2 text-xs text-ink-muted">
+                <label className="flex items-end gap-2 text-xs text-[var(--text-secondary)]">
                   <input
                     type="checkbox"
                     checked={draft.isPinned}
                     onChange={(e) =>
                       setDraft({ ...draft, isPinned: e.target.checked })
                     }
-                    className="accent-[var(--neon-cyan)]"
+                    className="accent-[var(--color-primary)]"
                   />
                   置顶
                 </label>
-                <label className="flex items-end gap-2 text-xs text-ink-muted">
+                <label className="flex items-end gap-2 text-xs text-[var(--text-secondary)]">
                   <input
                     type="checkbox"
                     checked={draft.status === 1}
                     onChange={(e) =>
                       setDraft({ ...draft, status: e.target.checked ? 1 : 0 })
                     }
-                    className="accent-[var(--neon-cyan)]"
+                    className="accent-[var(--color-primary)]"
                   />
                   启用
                 </label>
               </div>
               <button
                 onClick={creating ? create : save}
-                className="w-full rounded border border-neon-cyan/40 bg-neon-cyan/10 py-2 text-sm font-bold text-neon-cyan hover:bg-neon-cyan/20"
+                className="w-full rounded border border-[var(--color-primary)]/40 bg-[var(--color-primary)]/10 py-2 text-sm font-bold text-[var(--color-primary)] hover:bg-[var(--color-primary)]/20"
               >
                 {creating ? "创建" : "保存"}
               </button>

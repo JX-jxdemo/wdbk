@@ -39,8 +39,8 @@ export default function AdminLayout() {
   if (user.role !== "admin") {
     return (
       <div className="section-py container text-center">
-        <div className="font-display text-3xl text-neon-magenta">403</div>
-        <div className="mt-2 text-ink-muted">需要管理员权限</div>
+        <div className="font-heading text-3xl text-[#f97316]">403</div>
+        <div className="mt-2 text-[var(--text-secondary)]">需要管理员权限</div>
       </div>
     );
   }
@@ -52,8 +52,8 @@ export default function AdminLayout() {
         <aside className="lg:sticky lg:top-24 lg:self-start">
           <div className="glass rounded-xl p-4">
             <div className="mb-3 flex items-center gap-2 border-b border-[var(--color-border)] pb-3">
-              <Terminal className="h-5 w-5 text-neon-cyan" />
-              <span className="font-display text-sm font-bold text-white">
+              <Terminal className="h-5 w-5 text-[var(--color-primary)]" />
+              <span className="font-heading text-sm font-bold text-[var(--text-primary)]">
                 ADMIN PANEL
               </span>
             </div>
@@ -67,8 +67,8 @@ export default function AdminLayout() {
                     cn(
                       "flex items-center gap-2 rounded px-3 py-2 text-sm transition",
                       isActive
-                        ? "bg-neon-cyan/10 text-neon-cyan"
-                        : "text-ink-muted hover:bg-white/5 hover:text-white"
+                        ? "bg-[var(--color-primary)]/10 text-[var(--color-primary)]"
+                        : "text-[var(--text-secondary)] hover:bg-[var(--text-primary)]/5 hover:text-[var(--text-primary)]"
                     )
                   }
                 >
@@ -80,7 +80,7 @@ export default function AdminLayout() {
             <a
               href="/"
               target="_blank"
-              className="mt-3 flex items-center gap-2 rounded border border-[var(--color-border)] px-3 py-2 text-xs text-ink-muted hover:text-neon-cyan"
+              className="mt-3 flex items-center gap-2 rounded border border-[var(--color-border)] px-3 py-2 text-xs text-[var(--text-secondary)] hover:text-[var(--color-primary)]"
             >
               <ExternalLink className="h-3 w-3" />
               新窗口打开前台

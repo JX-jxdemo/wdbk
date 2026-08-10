@@ -52,12 +52,11 @@ export default function ArticleDetail() {
       <article className="pt-24">
         {/* 文章头部 */}
         <header className="relative overflow-hidden border-b border-[var(--color-border)]">
-          <div className="absolute inset-0 bg-grid opacity-20" />
           <div className="container relative z-10 py-12">
             {/* 返回链接 */}
             <button
               onClick={handleBack}
-              className="group mb-8 inline-flex items-center gap-2 rounded border border-[var(--color-border)] bg-base-900/50 px-4 py-2 font-mono text-xs text-ink-muted transition-colors hover:border-neon-cyan/50 hover:bg-neon-cyan/10 hover:text-neon-cyan"
+              className="group mb-8 inline-flex items-center gap-2 rounded border border-[var(--color-border)] bg-[var(--color-surface)]/50 px-4 py-2 font-mono text-xs text-[var(--text-muted)] transition-colors hover:border-[var(--color-primary)]/50 hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)]"
             >
               <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
               返回
@@ -88,7 +87,7 @@ export default function ArticleDetail() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="max-w-4xl font-heading text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl"
+              className="max-w-4xl font-heading text-3xl font-bold leading-tight text-[var(--text-primary)] sm:text-4xl md:text-5xl"
             >
               {article.title}
             </motion.h1>
@@ -98,7 +97,7 @@ export default function ArticleDetail() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mt-4 max-w-2xl text-ink-muted"
+              className="mt-4 max-w-2xl text-[var(--text-muted)]"
             >
               {article.excerpt}
             </motion.p>
@@ -108,7 +107,7 @@ export default function ArticleDetail() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="mt-6 flex flex-wrap items-center gap-5 font-mono text-xs text-ink-faint"
+              className="mt-6 flex flex-wrap items-center gap-5 font-mono text-xs text-[var(--text-faint)]"
             >
               <span className="flex items-center gap-1.5">
                 <Calendar className="h-3.5 w-3.5" />
@@ -132,7 +131,7 @@ export default function ArticleDetail() {
             cover={article.cover}
             className="h-48 w-full rounded-xl sm:h-64 md:h-80"
           >
-            <div className="absolute bottom-4 right-4 z-[1] font-display text-6xl font-black text-white/10">
+            <div className="absolute bottom-4 right-4 z-[1] font-heading text-6xl font-bold text-[var(--text-primary)]/10">
               {String(article.id).padStart(2, "0")}
             </div>
           </GradientCover>
@@ -172,14 +171,14 @@ export default function ArticleDetail() {
         <div className="container border-t border-[var(--color-border)] py-8">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="font-mono text-xs text-ink-faint">TAGS:</span>
+              <span className="font-mono text-xs text-[var(--text-faint)]">TAGS:</span>
               {article.tags.map((tag) => (
                 <Tag key={tag} color="cyan">
                   #{tag}
                 </Tag>
               ))}
             </div>
-            <button className="flex items-center gap-2 border border-white/10 px-4 py-2 font-mono text-xs text-ink-muted transition-colors hover:border-neon-cyan/50 hover:text-neon-cyan">
+            <button className="flex items-center gap-2 border border-[var(--color-border)] px-4 py-2 font-mono text-xs text-[var(--text-muted)] transition-colors hover:border-[var(--color-primary)]/50 hover:text-[var(--color-primary)]">
               <Share2 className="h-3.5 w-3.5" />
               分享文章
             </button>
@@ -195,12 +194,12 @@ export default function ArticleDetail() {
                   to={`/blog/${prev.slug}`}
                   className="glass glass-hover group flex items-center gap-4 rounded-xl p-5"
                 >
-                  <ChevronLeft className="h-5 w-5 shrink-0 text-ink-faint transition-colors group-hover:text-neon-cyan" />
+                  <ChevronLeft className="h-5 w-5 shrink-0 text-[var(--text-faint)] transition-colors group-hover:text-[var(--color-primary)]" />
                   <div className="min-w-0">
-                    <div className="font-mono text-xs text-ink-faint">
+                    <div className="font-mono text-xs text-[var(--text-faint)]">
                       上一篇
                     </div>
-                    <div className="mt-1 truncate font-heading text-sm font-medium text-white transition-colors group-hover:text-neon-cyan">
+                    <div className="mt-1 truncate font-heading text-sm font-medium text-[var(--text-primary)] transition-colors group-hover:text-[var(--color-primary)]">
                       {prev.title}
                     </div>
                   </div>
@@ -214,14 +213,14 @@ export default function ArticleDetail() {
                   className="glass glass-hover group flex items-center justify-end gap-4 rounded-xl p-5 text-right"
                 >
                   <div className="min-w-0">
-                    <div className="font-mono text-xs text-ink-faint">
+                    <div className="font-mono text-xs text-[var(--text-faint)]">
                       下一篇
                     </div>
-                    <div className="mt-1 truncate font-heading text-sm font-medium text-white transition-colors group-hover:text-neon-cyan">
+                    <div className="mt-1 truncate font-heading text-sm font-medium text-[var(--text-primary)] transition-colors group-hover:text-[var(--color-primary)]">
                       {next.title}
                     </div>
                   </div>
-                  <ChevronRight className="h-5 w-5 shrink-0 text-ink-faint transition-colors group-hover:text-neon-cyan" />
+                  <ChevronRight className="h-5 w-5 shrink-0 text-[var(--text-faint)] transition-colors group-hover:text-[var(--color-primary)]" />
                 </Link>
               ) : (
                 <div />

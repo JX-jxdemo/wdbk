@@ -10,24 +10,24 @@ const categoryConfig: Record<
   { label: string; color: string; glow: string }
 > = {
   frontend: {
-    label: "Frontend",
-    color: "text-neon-cyan",
-    glow: "hover:shadow-neon-cyan hover:border-neon-cyan/50",
+    label: "前端开发",
+    color: "text-[var(--color-primary)]",
+    glow: "hover:border-[var(--color-primary)]/50",
   },
   backend: {
-    label: "Backend",
-    color: "text-neon-magenta",
-    glow: "hover:shadow-neon-magenta hover:border-neon-magenta/50",
+    label: "后端开发",
+    color: "text-[#f97316]",
+    glow: "hover:border-[#f97316]/50",
   },
   design: {
-    label: "Design",
-    color: "text-neon-purple",
-    glow: "hover:shadow-neon-purple hover:border-neon-purple/50",
+    label: "设计",
+    color: "text-lavender-500",
+    glow: "hover:border-lavender-500/50",
   },
   tools: {
-    label: "Tools",
-    color: "text-neon-green",
-    glow: "hover:border-neon-green/50",
+    label: "工具链",
+    color: "text-green-500",
+    glow: "hover:border-green-500/50",
   },
 };
 
@@ -36,7 +36,7 @@ export default function SkillsMatrix() {
     <section className="section-py">
       <div className="container">
         <SectionTitle
-          eyebrow="CAPABILITY"
+          eyebrow="技术能力"
           title="技能矩阵"
           description="横跨前端、后端、设计与工具链的技术能力图谱。"
           align="center"
@@ -52,11 +52,11 @@ export default function SkillsMatrix() {
                 <div className="glass rounded-xl p-6">
                   <div className="mb-4 flex items-center gap-3">
                     <span className={`font-mono text-sm ${config.color}`}>
-                      [{config.label}]
+                      {config.label}
                     </span>
                     <div className="h-px flex-1 bg-[var(--color-border)]" />
-                    <span className="font-mono text-xs text-ink-faint">
-                      {skills.length} skills
+                    <span className="font-mono text-xs text-[var(--text-faint)]">
+                      {skills.length} 项技能
                     </span>
                   </div>
 
@@ -71,13 +71,14 @@ export default function SkillsMatrix() {
                         whileHover={{ scale: 1.05, y: -2 }}
                         className={`glass glass-hover cursor-default rounded-lg border px-4 py-2.5 ${config.glow}`}
                       >
-                        <div className="font-heading text-sm font-medium text-white">
+                        <div className="font-heading text-sm font-medium text-[var(--text-primary)]">
                           {skill.name}
                         </div>
                         <div className="mt-0.5 flex items-center gap-1.5">
-                          <div className="h-1 w-16 overflow-hidden rounded-full bg-white/5">
+                          <div className="h-1 w-16 overflow-hidden rounded-full bg-[var(--color-border)]">
                             <motion.div
                               className={`h-full ${config.color.replace("text-", "bg-")}`}
+                              style={{ backgroundColor: "currentColor" }}
                               initial={{ width: 0 }}
                               whileInView={{ width: `${skill.level}%` }}
                               viewport={{ once: true }}
@@ -101,7 +102,7 @@ export default function SkillsMatrix() {
         <div className="mt-12 text-center">
           <Link
             to="/about"
-            className="group inline-flex items-center gap-2 border border-neon-cyan/40 px-7 py-3 font-mono text-sm text-neon-cyan transition-all hover:bg-neon-cyan/10 hover:shadow-neon-cyan"
+            className="btn-secondary"
           >
             查看完整简历
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

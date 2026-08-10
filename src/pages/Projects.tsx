@@ -10,8 +10,8 @@ const statusConfig: Record<
   Project["status"],
   { label: string; color: string }
 > = {
-  live: { label: "在线", color: "#39ff14" },
-  wip: { label: "开发中", color: "#ffb800" },
+  live: { label: "在线", color: "#22c55e" },
+  wip: { label: "开发中", color: "#f59e0b" },
   archived: { label: "已归档", color: "#71717a" },
 };
 
@@ -51,7 +51,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </span>
 
           {/* 项目名水印 */}
-          <div className="absolute bottom-4 left-4 z-[1] font-display text-2xl font-black text-white/15">
+          <div className="absolute bottom-4 left-4 z-[1] font-heading text-2xl font-black text-white/15">
             {project.title}
           </div>
         </GradientCover>
@@ -59,11 +59,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
       {/* 内容 */}
       <div className="flex flex-1 flex-col p-6">
-        <h3 className="font-heading text-xl font-bold text-white transition-colors group-hover:text-neon-cyan">
+        <h3 className="font-heading text-xl font-bold text-[var(--text-primary)] transition-colors group-hover:text-[var(--color-primary)]">
           {project.title}
         </h3>
 
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-muted">
+        <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--text-secondary)]">
           {project.description}
         </p>
 
@@ -83,7 +83,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 font-mono text-xs text-neon-cyan transition-colors hover:text-white"
+              className="flex items-center gap-1.5 font-mono text-xs text-[var(--color-primary)] transition-colors hover:text-[var(--text-primary)]"
             >
               <ExternalLink className="h-3.5 w-3.5" />
               演示
@@ -94,13 +94,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               href={project.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 font-mono text-xs text-ink-muted transition-colors hover:text-neon-cyan"
+              className="flex items-center gap-1.5 font-mono text-xs text-[var(--text-secondary)] transition-colors hover:text-[var(--color-primary)]"
             >
               <Github className="h-3.5 w-3.5" />
               源码
             </a>
           )}
-          <span className="ml-auto flex items-center gap-1 font-mono text-xs text-ink-faint">
+          <span className="ml-auto flex items-center gap-1 font-mono text-xs text-[var(--text-faint)]">
             <Calendar className="h-3 w-3" />
             {project.year}
           </span>
@@ -115,17 +115,16 @@ export default function Projects() {
     <div className="pt-24">
       {/* Banner */}
       <section className="relative overflow-hidden border-b border-[var(--color-border)]">
-        <div className="absolute inset-0 bg-grid opacity-30" />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neon-magenta to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#f97316] to-transparent" />
 
         <div className="container relative z-10 py-16 sm:py-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neon-magenta"
+            className="mb-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-[#f97316]"
           >
-            <span className="h-px w-8 bg-neon-magenta shadow-[0_0_8px_var(--neon-magenta)]" />
+            <span className="h-px w-8 bg-[#f97316] shadow-card-hover" />
             SHOWCASE
           </motion.div>
 
@@ -133,16 +132,16 @@ export default function Projects() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display text-4xl font-black text-white sm:text-5xl md:text-6xl"
+            className="font-heading text-4xl font-black text-[var(--text-primary)] sm:text-5xl md:text-6xl"
           >
-            项目<span className="text-gradient-neon">作品集</span>
+            项目<span className="text-[var(--color-primary)]">作品集</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-4 max-w-2xl text-ink-muted"
+            className="mt-4 max-w-2xl text-[var(--text-secondary)]"
           >
             共 {projects.length} 个项目 · 从 Web 应用到创意实验,探索技术的边界
           </motion.p>

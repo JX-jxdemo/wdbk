@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
 
-/**
- * 自定义霓虹光标
- * 跟随鼠标的光晕环,在桌面端显示
- */
 export default function CustomCursor() {
   const [position, setPosition] = useState({ x: -100, y: -100 });
   const [hovering, setHovering] = useState(false);
 
   useEffect(() => {
-    // 仅桌面端启用
     if (window.matchMedia("(hover: none)").matches) return;
 
     const move = (e: MouseEvent) => {
@@ -36,11 +31,10 @@ export default function CustomCursor() {
       aria-hidden="true"
     >
       <div
-        className="rounded-full border border-neon-cyan transition-all duration-200"
+        className="rounded-full border border-[var(--color-primary)] transition-all duration-200"
         style={{
           width: hovering ? 40 : 20,
           height: hovering ? 40 : 20,
-          boxShadow: "0 0 12px rgba(0,240,255,0.5)",
           opacity: position.x === -100 ? 0 : 1,
         }}
       />

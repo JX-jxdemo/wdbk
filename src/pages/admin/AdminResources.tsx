@@ -17,10 +17,10 @@ import {
 import { useAuth } from "@/contexts/AuthContext";
 
 const CATEGORIES = [
-  { id: "tools", name: "开发工具", color: "#00f0ff", icon: FolderOpen },
-  { id: "docs", name: "文档素材", color: "#ff006e", icon: FileText },
-  { id: "source", name: "开源源码", color: "#7c3aed", icon: Code2 },
-  { id: "learning", name: "学习资料", color: "#39ff14", icon: GraduationCap },
+  { id: "tools", name: "开发工具", color: "var(--color-primary)", icon: FolderOpen },
+  { id: "docs", name: "文档素材", color: "#f97316", icon: FileText },
+  { id: "source", name: "开源源码", color: "#8b5cf6", icon: Code2 },
+  { id: "learning", name: "学习资料", color: "#22c55e", icon: GraduationCap },
 ];
 
 type Tab = "submissions" | "resources";
@@ -119,9 +119,9 @@ export default function AdminResources() {
 
   const getStatusBadge = (status: string) => {
     const map: Record<string, { label: string; color: string; icon: any }> = {
-      pending: { label: "待审核", color: "#ffb800", icon: Clock },
-      approved: { label: "已通过", color: "#39ff14", icon: CheckCircle },
-      rejected: { label: "已拒绝", color: "#ff006e", icon: XCircle },
+      pending: { label: "待审核", color: "#f59e0b", icon: Clock },
+      approved: { label: "已通过", color: "#22c55e", icon: CheckCircle },
+      rejected: { label: "已拒绝", color: "#f97316", icon: XCircle },
       draft: { label: "草稿", color: "#71717a", icon: Edit3 },
       archived: { label: "已归档", color: "#71717a", icon: Eye },
     };
@@ -146,10 +146,10 @@ export default function AdminResources() {
     <div>
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="font-display text-2xl font-bold text-white">
+          <h1 className="font-heading text-2xl font-bold text-[var(--text-primary)]">
             资源仓库管理
           </h1>
-          <p className="mt-1 font-mono text-xs text-ink-faint">
+          <p className="mt-1 font-mono text-xs text-[var(--text-faint)]">
             管理外链资源与用户投稿审核
           </p>
         </div>
@@ -159,7 +159,7 @@ export default function AdminResources() {
               setEditing(null);
               setShowForm(true);
             }}
-            className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-neon-cyan to-neon-purple px-4 py-2 font-mono text-xs font-semibold text-base-900 hover:shadow-[0_0_16px_var(--neon-cyan)]"
+            className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-[var(--color-primary)] to-[#8b5cf6] px-4 py-2 font-mono text-xs font-semibold text-[var(--color-bg)] hover:shadow-card-hover"
           >
             <Plus className="h-4 w-4" />
             新建资源
@@ -178,8 +178,8 @@ export default function AdminResources() {
             onClick={() => setTab(t.key as Tab)}
             className={`border-b-2 px-4 py-2 font-mono text-xs transition-colors ${
               tab === t.key
-                ? "border-neon-cyan text-neon-cyan"
-                : "border-transparent text-ink-muted hover:text-white"
+                ? "border-[var(--color-primary)] text-[var(--color-primary)]"
+                : "border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
             }`}
           >
             {t.label}
@@ -191,10 +191,10 @@ export default function AdminResources() {
       </div>
 
       {loading ? (
-        <div className="py-20 text-center text-ink-faint">加载中...</div>
+        <div className="py-20 text-center text-[var(--text-faint)]">加载中...</div>
       ) : tab === "submissions" ? (
         submissions.length === 0 ? (
-          <div className="py-20 text-center text-ink-faint">
+          <div className="py-20 text-center text-[var(--text-faint)]">
             <Send className="mx-auto mb-3 h-10 w-10 opacity-30" />
             <p className="font-mono text-sm">暂无待审核投稿</p>
           </div>
@@ -209,7 +209,7 @@ export default function AdminResources() {
                 >
                   <div className="flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="font-heading text-sm font-bold text-white">
+                      <h3 className="font-heading text-sm font-bold text-[var(--text-primary)]">
                         {s.title}
                       </h3>
                       <span
@@ -223,15 +223,15 @@ export default function AdminResources() {
                       </span>
                       {getStatusBadge(s.status)}
                     </div>
-                    <p className="mt-1 text-xs text-ink-muted">{s.description}</p>
-                    <div className="mt-1 flex items-center gap-3 font-mono text-[11px] text-ink-faint">
+                    <p className="mt-1 text-xs text-[var(--text-secondary)]">{s.description}</p>
+                    <div className="mt-1 flex items-center gap-3 font-mono text-[11px] text-[var(--text-faint)]">
                       <span>{s.submittedBy}</span>
                       <span>{s.createdAt}</span>
                       <a
                         href={s.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-0.5 text-neon-cyan hover:underline"
+                        className="flex items-center gap-0.5 text-[var(--color-primary)] hover:underline"
                       >
                         <ExternalLink className="h-3 w-3" />
                         查看链接
@@ -243,13 +243,13 @@ export default function AdminResources() {
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleReview(s.id, "approve")}
-                        className="rounded-lg bg-neon-green/20 px-3 py-1.5 font-mono text-xs text-neon-green hover:bg-neon-green/30"
+                        className="rounded-lg bg-[#22c55e]/20 px-3 py-1.5 font-mono text-xs text-[#22c55e] hover:bg-[#22c55e]/30"
                       >
                         通过
                       </button>
                       <button
                         onClick={() => handleReview(s.id, "reject")}
-                        className="rounded-lg bg-neon-magenta/20 px-3 py-1.5 font-mono text-xs text-neon-magenta hover:bg-neon-magenta/30"
+                        className="rounded-lg bg-[#f97316]/20 px-3 py-1.5 font-mono text-xs text-[#f97316] hover:bg-[#f97316]/30"
                       >
                         拒绝
                       </button>
@@ -261,7 +261,7 @@ export default function AdminResources() {
           </div>
         )
       ) : resources.length === 0 ? (
-        <div className="py-20 text-center text-ink-faint">
+        <div className="py-20 text-center text-[var(--text-faint)]">
           <FolderOpen className="mx-auto mb-3 h-10 w-10 opacity-30" />
           <p className="font-mono text-sm">暂无资源</p>
         </div>
@@ -276,7 +276,7 @@ export default function AdminResources() {
               >
                 <div className="flex-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="font-heading text-sm font-bold text-white">
+                    <h3 className="font-heading text-sm font-bold text-[var(--text-primary)]">
                       {r.title}
                     </h3>
                     <span
@@ -290,14 +290,14 @@ export default function AdminResources() {
                     </span>
                     {getStatusBadge(r.status)}
                   </div>
-                  <p className="mt-1 text-xs text-ink-muted">{r.description}</p>
-                  <div className="mt-1 flex items-center gap-3 font-mono text-[11px] text-ink-faint">
+                  <p className="mt-1 text-xs text-[var(--text-secondary)]">{r.description}</p>
+                  <div className="mt-1 flex items-center gap-3 font-mono text-[11px] text-[var(--text-faint)]">
                     <span>更新于 {r.updatedAt}</span>
                     <a
                       href={r.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-0.5 text-neon-cyan hover:underline"
+                      className="flex items-center gap-0.5 text-[var(--color-primary)] hover:underline"
                     >
                       <ExternalLink className="h-3 w-3" />
                       外链
@@ -311,14 +311,14 @@ export default function AdminResources() {
                       setEditing(r);
                       setShowForm(true);
                     }}
-                    className="flex items-center gap-1 rounded-lg border border-[var(--color-border)] px-3 py-1.5 font-mono text-xs text-ink-muted hover:text-white"
+                    className="flex items-center gap-1 rounded-lg border border-[var(--color-border)] px-3 py-1.5 font-mono text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                   >
                     <Edit3 className="h-3.5 w-3.5" />
                     编辑
                   </button>
                   <button
                     onClick={() => handleDelete(r.id)}
-                    className="flex items-center gap-1 rounded-lg border border-neon-magenta/30 px-3 py-1.5 font-mono text-xs text-neon-magenta hover:bg-neon-magenta/10"
+                    className="flex items-center gap-1 rounded-lg border border-[#f97316]/30 px-3 py-1.5 font-mono text-xs text-[#f97316] hover:bg-[#f97316]/10"
                   >
                     <Trash2 className="h-3.5 w-3.5" />
                     删除
@@ -380,7 +380,7 @@ function ResourceForm({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-base-900/80 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--color-bg)]/80 p-4 backdrop-blur-sm"
       onClick={onClose}
     >
       <form
@@ -388,12 +388,12 @@ function ResourceForm({
         onSubmit={handleSubmit}
         className="glass max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-xl p-6"
       >
-        <h3 className="mb-4 font-heading text-lg font-bold text-white">
+        <h3 className="mb-4 font-heading text-lg font-bold text-[var(--text-primary)]">
           {initial ? "编辑资源" : "新建资源"}
         </h3>
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block font-mono text-xs text-ink-faint">
+            <label className="mb-1 block font-mono text-xs text-[var(--text-faint)]">
               标题
             </label>
             <input
@@ -401,49 +401,49 @@ function ResourceForm({
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
-              className="w-full rounded-lg border border-[var(--color-border)] bg-white/5 px-3 py-2 text-sm text-white focus:border-neon-cyan focus:outline-none"
+              className="w-full rounded-lg border border-[var(--color-border)] bg-white/5 px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block font-mono text-xs text-ink-faint">
+              <label className="mb-1 block font-mono text-xs text-[var(--text-faint)]">
                 分类
               </label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="w-full rounded-lg border border-[var(--color-border)] bg-white/5 px-3 py-2 text-sm text-white focus:border-neon-cyan focus:outline-none"
+                className="w-full rounded-lg border border-[var(--color-border)] bg-white/5 px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
               >
                 {CATEGORIES.map((c) => (
-                  <option key={c.id} value={c.id} className="bg-base-900">
+                  <option key={c.id} value={c.id} className="bg-[var(--color-bg)]">
                     {c.name}
                   </option>
                 ))}
               </select>
             </div>
             <div>
-              <label className="mb-1 block font-mono text-xs text-ink-faint">
+              <label className="mb-1 block font-mono text-xs text-[var(--text-faint)]">
                 状态
               </label>
               <select
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
-                className="w-full rounded-lg border border-[var(--color-border)] bg-white/5 px-3 py-2 text-sm text-white focus:border-neon-cyan focus:outline-none"
+                className="w-full rounded-lg border border-[var(--color-border)] bg-white/5 px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
               >
-                <option value="approved" className="bg-base-900">
+                <option value="approved" className="bg-[var(--color-bg)]">
                   已发布
                 </option>
-                <option value="draft" className="bg-base-900">
+                <option value="draft" className="bg-[var(--color-bg)]">
                   草稿
                 </option>
-                <option value="archived" className="bg-base-900">
+                <option value="archived" className="bg-[var(--color-bg)]">
                   已归档
                 </option>
               </select>
             </div>
           </div>
           <div>
-            <label className="mb-1 block font-mono text-xs text-ink-faint">
+            <label className="mb-1 block font-mono text-xs text-[var(--text-faint)]">
               链接 URL
             </label>
             <input
@@ -452,11 +452,11 @@ function ResourceForm({
               onChange={(e) => setUrl(e.target.value)}
               required
               placeholder="https://..."
-              className="w-full rounded-lg border border-[var(--color-border)] bg-white/5 px-3 py-2 text-sm text-white focus:border-neon-cyan focus:outline-none"
+              className="w-full rounded-lg border border-[var(--color-border)] bg-white/5 px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block font-mono text-xs text-ink-faint">
+            <label className="mb-1 block font-mono text-xs text-[var(--text-faint)]">
               描述
             </label>
             <textarea
@@ -464,12 +464,12 @@ function ResourceForm({
               onChange={(e) => setDescription(e.target.value)}
               required
               rows={3}
-              className="w-full resize-none rounded-lg border border-[var(--color-border)] bg-white/5 px-3 py-2 text-sm text-white focus:border-neon-cyan focus:outline-none"
+              className="w-full resize-none rounded-lg border border-[var(--color-border)] bg-white/5 px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block font-mono text-xs text-ink-faint">
+              <label className="mb-1 block font-mono text-xs text-[var(--text-faint)]">
                 按钮文案（可选）
               </label>
               <input
@@ -477,11 +477,11 @@ function ResourceForm({
                 value={buttonText}
                 onChange={(e) => setButtonText(e.target.value)}
                 placeholder="留空使用默认"
-                className="w-full rounded-lg border border-[var(--color-border)] bg-white/5 px-3 py-2 text-sm text-white focus:border-neon-cyan focus:outline-none"
+                className="w-full rounded-lg border border-[var(--color-border)] bg-white/5 px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block font-mono text-xs text-ink-faint">
+              <label className="mb-1 block font-mono text-xs text-[var(--text-faint)]">
                 Meta（JSON，可选）
               </label>
               <input
@@ -489,7 +489,7 @@ function ResourceForm({
                 value={metaText}
                 onChange={(e) => setMetaText(e.target.value)}
                 placeholder='{"系统":"Windows"}'
-                className="w-full rounded-lg border border-[var(--color-border)] bg-white/5 px-3 py-2 font-mono text-xs text-white focus:border-neon-cyan focus:outline-none"
+                className="w-full rounded-lg border border-[var(--color-border)] bg-white/5 px-3 py-2 font-mono text-xs text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
               />
             </div>
           </div>
@@ -498,13 +498,13 @@ function ResourceForm({
           <button
             type="button"
             onClick={onClose}
-            className="flex-1 rounded-lg border border-[var(--color-border)] py-2 font-mono text-sm text-ink-muted hover:text-white"
+            className="flex-1 rounded-lg border border-[var(--color-border)] py-2 font-mono text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
           >
             取消
           </button>
           <button
             type="submit"
-            className="flex-1 rounded-lg bg-gradient-to-r from-neon-cyan to-neon-purple py-2 font-mono text-sm font-semibold text-base-900 hover:shadow-[0_0_16px_var(--neon-cyan)]"
+            className="flex-1 rounded-lg bg-gradient-to-r from-[var(--color-primary)] to-[#8b5cf6] py-2 font-mono text-sm font-semibold text-[var(--color-bg)] hover:shadow-card-hover"
           >
             保存
           </button>

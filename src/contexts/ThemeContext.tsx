@@ -6,7 +6,7 @@ import {
   type ReactNode,
 } from "react";
 
-type Theme = "dark" | "light";
+type Theme = "light" | "dark";
 
 interface ThemeState {
   theme: Theme;
@@ -16,43 +16,42 @@ interface ThemeState {
 
 const ThemeContext = createContext<ThemeState | undefined>(undefined);
 
-const KEY = "neon_blog_theme";
+const KEY = "anime_blog_theme";
 
-// 亮色变量覆盖
 const LIGHT_VARS: Record<string, string> = {
-  "--color-bg": "#f5f6fa",
+  "--color-bg": "#f0f9ff",
   "--color-surface": "#ffffff",
-  "--color-surface-2": "#eef0f5",
-  "--color-border": "rgba(0, 140, 200, 0.18)",
-  "--color-border-hover": "rgba(0, 140, 200, 0.45)",
-  "--neon-cyan": "#0088cc",
-  "--neon-magenta": "#d9306a",
-  "--neon-purple": "#6d28d9",
-  "--neon-green": "#1f9d44",
-  "--text-primary": "#1a1a28",
-  "--text-muted": "#4b5563",
-  "--text-faint": "#6b7280",
+  "--color-surface-2": "#f8fafc",
+  "--color-border": "rgba(14, 165, 233, 0.12)",
+  "--color-border-hover": "rgba(14, 165, 233, 0.25)",
+  "--color-primary": "#0ea5e9",
+  "--color-primary-hover": "#0284c7",
+  "--color-primary-light": "#e0f2fe",
+  "--text-primary": "#1e293b",
+  "--text-secondary": "#475569",
+  "--text-muted": "#94a3b8",
+  "--text-faint": "#cbd5e1",
 };
 
 const DARK_VARS: Record<string, string> = {
-  "--color-bg": "#0a0a0f",
-  "--color-surface": "#0f0f17",
-  "--color-surface-2": "#14141f",
-  "--color-border": "rgba(0, 240, 255, 0.15)",
-  "--color-border-hover": "rgba(0, 240, 255, 0.4)",
-  "--neon-cyan": "#00f0ff",
-  "--neon-magenta": "#ff006e",
-  "--neon-purple": "#7c3aed",
-  "--neon-green": "#39ff14",
-  "--text-primary": "#e4e4e7",
-  "--text-muted": "#a1a1aa",
-  "--text-faint": "#71717a",
+  "--color-bg": "#1e293b",
+  "--color-surface": "#334155",
+  "--color-surface-2": "#475569",
+  "--color-border": "rgba(148, 163, 184, 0.15)",
+  "--color-border-hover": "rgba(148, 163, 184, 0.3)",
+  "--color-primary": "#38bdf8",
+  "--color-primary-hover": "#0ea5e9",
+  "--color-primary-light": "#1e40af",
+  "--text-primary": "#f1f5f9",
+  "--text-secondary": "#cbd5e1",
+  "--text-muted": "#94a3b8",
+  "--text-faint": "#64748b",
 };
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(() => {
     const saved = localStorage.getItem(KEY) as Theme | null;
-    return saved || "dark";
+    return saved || "light";
   });
 
   useEffect(() => {

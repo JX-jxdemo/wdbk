@@ -90,14 +90,14 @@ export default function NoticeBanner() {
           initial={{ y: -40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -40, opacity: 0 }}
-          className="fixed inset-x-0 top-0 z-[55] border-b border-[var(--color-border)] bg-base-900/95 backdrop-blur-md"
+          className="fixed inset-x-0 top-0 z-[55] border-b border-[var(--color-border)] bg-[var(--color-bg)]/95 backdrop-blur-md"
         >
           <div
             className={cn(
               "container flex items-center gap-3 py-2 text-sm",
               banner.noticeType === "birthday"
-                ? "text-neon-magenta"
-                : "text-neon-cyan"
+                ? "text-[#f97316]"
+                : "text-[var(--color-primary)]"
             )}
           >
             <span className="flex-shrink-0">
@@ -112,17 +112,17 @@ export default function NoticeBanner() {
             </span>
             <div className="notice-marquee flex-1 overflow-hidden">
               <div className="notice-marquee-inner">
-                <span className="whitespace-nowrap pr-12 text-ink-muted">
+                <span className="whitespace-nowrap pr-12 text-[var(--text-secondary)]">
                   {banner.content}
                 </span>
-                <span className="whitespace-nowrap pr-12 text-ink-muted">
+                <span className="whitespace-nowrap pr-12 text-[var(--text-secondary)]">
                   {banner.content}
                 </span>
               </div>
             </div>
             <button
               onClick={() => dismiss(banner.id)}
-              className="ml-auto flex-shrink-0 rounded p-1 text-ink-muted hover:text-white"
+              className="ml-auto flex-shrink-0 rounded p-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
               aria-label="关闭公告"
             >
               <X className="h-3.5 w-3.5" />

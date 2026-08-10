@@ -20,8 +20,8 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
 
   return (
     <nav className="sticky top-24 hidden xl:block">
-      <div className="mb-4 flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-neon-cyan">
-        <span className="h-px w-6 bg-neon-cyan shadow-[0_0_8px_var(--neon-cyan)]" />
+      <div className="mb-4 flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[var(--color-primary)]">
+        <span className="h-px w-6 bg-[var(--color-primary)]" />
         目录
       </div>
 
@@ -34,14 +34,14 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
                 "relative -ml-px block w-full border-l-2 py-1.5 pl-4 text-left text-sm transition-all",
                 h.level === 3 && "pl-8",
                 activeId === h.id
-                  ? "border-neon-cyan text-neon-cyan"
-                  : "border-transparent text-ink-faint hover:text-white"
+                  ? "border-[var(--color-primary)] text-[var(--color-primary)]"
+                  : "border-transparent text-[var(--text-faint)] hover:text-[var(--text-primary)]"
               )}
             >
               {activeId === h.id && (
                 <motion.span
                   layoutId="toc-active"
-                  className="absolute -left-[2px] top-1/2 h-4 w-[2px] -translate-y-1/2 bg-neon-cyan shadow-[0_0_8px_var(--neon-cyan)]"
+                  className="absolute -left-[2px] top-1/2 h-4 w-[2px] -translate-y-1/2 bg-[var(--color-primary)]"
                 />
               )}
               {h.text}

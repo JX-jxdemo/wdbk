@@ -8,20 +8,29 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-[var(--color-border)] bg-base-900/80">
-      <div className="container py-12">
-        <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
-          {/* 品牌 */}
+    <footer
+      className="border-t border-[var(--color-border)]"
+      style={{ background: "var(--color-surface-2)" }}
+    >
+      <div className="container py-10">
+        <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
           <div className="text-center md:text-left">
-            <Link to="/" className="font-display text-xl font-bold text-white">
-              NEON<span className="text-neon-cyan">.DEV</span>
+            <Link
+              to="/"
+              className="font-heading text-lg font-bold tracking-wider"
+              style={{ color: "var(--text-primary)" }}
+            >
+              NEON
+              <span style={{ color: "var(--color-primary)" }}>.DEV</span>
             </Link>
-            <p className="mt-2 max-w-sm text-sm text-ink-faint">
-              在代码与霓虹的交汇处,构建数字未来。
+            <p
+              className="mt-2 max-w-sm text-sm"
+              style={{ color: "var(--text-muted)" }}
+            >
+              在代码与设计的交汇处，构建数字未来。
             </p>
           </div>
 
-          {/* 社交链接 */}
           <div className="flex items-center gap-3">
             {socials.map((s) => (
               <a
@@ -29,7 +38,17 @@ export default function Footer() {
                 href={s.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass glass-hover flex h-11 w-11 items-center justify-center rounded-lg text-ink-muted transition-colors hover:text-neon-cyan"
+                className="flex h-10 w-11 items-center justify-center rounded-lg border transition-colors duration-200 hover:border-[var(--color-primary)]"
+                style={{
+                  borderColor: "var(--color-border)",
+                  color: "var(--text-muted)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = "var(--color-primary)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = "var(--text-muted)";
+                }}
                 aria-label={s.name}
               >
                 <s.icon className="h-5 w-5" />
@@ -38,15 +57,15 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* 分割线 */}
-        <div className="my-8 h-px bg-gradient-to-r from-transparent via-neon-cyan/30 to-transparent" />
-
-        {/* 底部信息 */}
-        <div className="flex flex-col items-center justify-between gap-4 text-xs text-ink-faint sm:flex-row">
-          <p className="font-mono">
-            © 2026 NEON.DEV — 用 <span className="text-neon-magenta">♥</span> 与代码构建
-          </p>
-          <p className="font-mono">SYSTEM ONLINE · v2.0.26</p>
+        <div
+          className="mt-8 flex flex-col items-center justify-between gap-4 border-t pt-6 text-xs sm:flex-row"
+          style={{
+            borderColor: "var(--color-border)",
+            color: "var(--text-faint)",
+          }}
+        >
+          <p>© 2026 NEON.DEV — 用心与代码构建</p>
+          <p>v2.0.26</p>
         </div>
       </div>
     </footer>

@@ -18,12 +18,9 @@ export default function Blog() {
 
   const filtered = useMemo(() => {
     return articles.filter((a) => {
-      // 分类过滤
       if (activeCategory !== "all" && a.category !== activeCategory)
         return false;
-      // 标签过滤
       if (activeTag && !a.tags.includes(activeTag)) return false;
-      // 搜索
       if (searchTerm) {
         const q = searchTerm.toLowerCase();
         return (
@@ -38,54 +35,48 @@ export default function Blog() {
 
   return (
     <div className="pt-24">
-      {/* Banner */}
-      <section className="relative overflow-hidden border-b border-[var(--color-border)]">
-        <div className="absolute inset-0 bg-grid opacity-30" />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neon-cyan to-transparent" />
-
-        <div className="container relative z-10 py-16 sm:py-20">
+      <section className="border-b border-[var(--color-border)]">
+        <div className="container py-12 sm:py-16">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-neon-cyan"
+            transition={{ duration: 0.4 }}
+            className="mb-2 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-[var(--color-primary)]"
           >
-            <span className="h-px w-8 bg-neon-cyan shadow-[0_0_8px_var(--neon-cyan)]" />
-            ARCHIVE
+            <span className="h-px w-6 bg-[var(--color-primary)]" />
+            文章归档
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display text-4xl font-black text-white sm:text-5xl md:text-6xl"
+            transition={{ duration: 0.5, delay: 0.08 }}
+            className="font-heading text-4xl font-bold text-[var(--text-primary)] sm:text-5xl"
           >
-            博客<span className="text-gradient-neon">归档</span>
+            博客<span className="text-[var(--color-primary)]">归档</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-4 max-w-2xl text-ink-muted"
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="mt-3 max-w-2xl text-[var(--text-secondary)]"
           >
             共 {articles.length} 篇文章 · 探索前端工程、设计美学与工程实践
           </motion.p>
         </div>
       </section>
 
-      {/* 筛选区 */}
-      <section className="border-b border-[var(--color-border)] bg-base-900/50">
+      <section className="border-b border-[var(--color-border)] bg-[var(--color-surface-2)]">
         <div className="container space-y-5 py-6">
-          {/* 分类 + 搜索 */}
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setActiveCategory("all")}
-                className={`rounded border px-4 py-2 font-mono text-xs transition-all ${
+                className={`rounded-xl border px-4 py-2 font-mono text-xs transition-all ${
                   activeCategory === "all"
-                    ? "border-neon-cyan bg-neon-cyan/10 text-neon-cyan shadow-neon-cyan"
-                    : "border-white/10 text-ink-muted hover:border-white/30 hover:text-white"
+                    ? "border-[var(--color-primary)] bg-[var(--color-primary-light)] text-[var(--color-primary)]"
+                    : "border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                 }`}
               >
                 全部
@@ -94,10 +85,10 @@ export default function Blog() {
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`rounded border px-4 py-2 font-mono text-xs transition-all ${
+                  className={`rounded-xl border px-4 py-2 font-mono text-xs transition-all ${
                     activeCategory === cat.id
-                      ? "bg-[color-mix(in_srgb,var(--c)_15%,transparent)] text-[var(--c)] shadow-[0_0_12px_var(--c)]"
-                      : "border-white/10 text-ink-muted hover:border-white/30 hover:text-white"
+                      ? "border-[var(--color-primary)] bg-[var(--color-primary-light)] text-[var(--color-primary)]"
+                      : "border-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                   }`}
                   style={
                     {
@@ -114,20 +105,19 @@ export default function Blog() {
               ))}
             </div>
 
-            {/* 搜索框 */}
             <div className="relative w-full lg:w-72">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-faint" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--text-faint)]" />
               <input
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="搜索文章..."
-                className="w-full rounded border border-[var(--color-border)] bg-base-800 py-2.5 pl-10 pr-10 font-mono text-sm text-white placeholder-ink-faint outline-none transition-colors focus:border-neon-cyan/50 focus:shadow-neon-cyan"
+                className="input-field pl-10 pr-10"
               />
               {searchTerm && (
                 <button
                   onClick={() => setSearchTerm("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-faint hover:text-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--text-faint)] transition-colors hover:text-[var(--text-primary)]"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -135,9 +125,8 @@ export default function Blog() {
             </div>
           </div>
 
-          {/* 标签云 */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="font-mono text-xs text-ink-faint">TAGS:</span>
+            <span className="font-mono text-xs text-[var(--text-faint)]">TAGS:</span>
             {allTags.map((tag) => (
               <Tag
                 key={tag}
@@ -152,7 +141,6 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* 文章列表 */}
       <section className="section-py">
         <div className="container">
           <AnimatePresence mode="wait">
@@ -173,9 +161,9 @@ export default function Blog() {
                 exit={{ opacity: 0 }}
                 className="flex flex-col items-center justify-center py-20 text-center"
               >
-                <FileQuestion className="mb-4 h-16 w-16 text-ink-faint" />
-                <p className="font-heading text-xl text-white">未找到匹配文章</p>
-                <p className="mt-2 text-sm text-ink-muted">
+                <FileQuestion className="mb-4 h-16 w-16 text-[var(--text-faint)]" />
+                <p className="font-heading text-xl text-[var(--text-primary)]">未找到匹配文章</p>
+                <p className="mt-2 text-sm text-[var(--text-secondary)]">
                   尝试调整筛选条件或搜索关键词
                 </p>
                 <button
@@ -184,7 +172,7 @@ export default function Blog() {
                     setActiveTag(null);
                     setSearchTerm("");
                   }}
-                  className="mt-6 border border-neon-cyan/40 px-5 py-2 font-mono text-xs text-neon-cyan transition-all hover:bg-neon-cyan/10 hover:shadow-neon-cyan"
+                  className="resource-btn mt-6"
                 >
                   重置筛选
                 </button>

@@ -18,11 +18,11 @@ const baseStyles =
 
 const variants = {
   primary:
-    "bg-neon-cyan text-base-900 hover:shadow-neon-cyan hover:brightness-110",
+    "bg-[var(--color-primary)] text-[var(--color-bg)] hover:shadow-card-hover hover:brightness-110",
   ghost:
-    "text-ink-muted hover:text-neon-cyan hover:bg-neon-cyan/5",
+    "text-[var(--text-secondary)] hover:text-[var(--color-primary)] hover:bg-[var(--color-primary)]/5",
   outline:
-    "border border-neon-cyan/40 text-neon-cyan hover:bg-neon-cyan/10 hover:border-neon-cyan hover:shadow-neon-cyan",
+    "border border-[var(--color-primary)]/40 text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 hover:border-[var(--color-primary)] hover:shadow-card-hover",
 };
 
 export default function Button({

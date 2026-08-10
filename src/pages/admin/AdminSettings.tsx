@@ -62,25 +62,25 @@ export default function AdminSettings() {
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="font-display text-2xl font-bold text-white">站点设置</h1>
+        <h1 className="font-heading text-2xl font-bold text-[var(--text-primary)]">站点设置</h1>
         <button
           onClick={save}
           disabled={saving}
-          className="rounded border border-neon-cyan/40 bg-neon-cyan/10 px-4 py-2 text-sm font-bold text-neon-cyan hover:bg-neon-cyan/20 disabled:opacity-50"
+          className="rounded border border-[var(--color-primary)]/40 bg-[var(--color-primary)]/10 px-4 py-2 text-sm font-bold text-[var(--color-primary)] hover:bg-[var(--color-primary)]/20 disabled:opacity-50"
         >
           {saving ? "保存中..." : "保存设置"}
         </button>
       </div>
 
       {msg && (
-        <div className="mb-4 rounded border border-neon-cyan/30 bg-neon-cyan/10 px-3 py-2 text-sm text-neon-cyan">
+        <div className="mb-4 rounded border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-3 py-2 text-sm text-[var(--color-primary)]">
           {msg}
         </div>
       )}
 
       {/* 模块开关 */}
       <div className="glass mb-4 rounded-xl p-5">
-        <h3 className="mb-4 font-bold text-white">模块开关</h3>
+        <h3 className="mb-4 font-bold text-[var(--text-primary)]">模块开关</h3>
         <div className="grid gap-3 sm:grid-cols-2">
           <Toggle
             label="允许注册"
@@ -118,19 +118,19 @@ export default function AdminSettings() {
       {/* 生日模板 */}
       <div className="glass mb-4 rounded-xl p-5">
         <div className="mb-3 flex items-center justify-between">
-          <h3 className="flex items-center gap-2 font-bold text-white">
-            <Cake className="h-4 w-4 text-neon-magenta" />
+          <h3 className="flex items-center gap-2 font-bold text-[var(--text-primary)]">
+            <Cake className="h-4 w-4 text-[#f97316]" />
             生日周三阶段模板
           </h3>
           <button
             onClick={runBirthday}
-            className="flex items-center gap-1 rounded border border-neon-cyan/40 bg-neon-cyan/10 px-3 py-1 text-xs text-neon-cyan hover:bg-neon-cyan/20"
+            className="flex items-center gap-1 rounded border border-[var(--color-primary)]/40 bg-[var(--color-primary)]/10 px-3 py-1 text-xs text-[var(--color-primary)] hover:bg-[var(--color-primary)]/20"
           >
             <RefreshCw className="h-3 w-3" /> 手动触发任务
           </button>
         </div>
-        <p className="mb-3 text-xs text-ink-muted">
-          模板变量 <code className="text-neon-cyan">{"{username}"}</code> 会被替换为用户名。
+        <p className="mb-3 text-xs text-[var(--text-secondary)]">
+          模板变量 <code className="text-[var(--color-primary)]">{"{username}"}</code> 会被替换为用户名。
           生日周：前 3 天私信预热 → 当天全站公告 → 后 3 天持续展示。
         </p>
         <div className="space-y-3">
@@ -153,11 +153,11 @@ export default function AdminSettings() {
       </div>
 
       <div className="glass rounded-xl p-5">
-        <h3 className="mb-3 flex items-center gap-2 font-bold text-white">
-          <Send className="h-4 w-4 text-neon-cyan" />
+        <h3 className="mb-3 flex items-center gap-2 font-bold text-[var(--text-primary)]">
+          <Send className="h-4 w-4 text-[var(--color-primary)]" />
           模块说明
         </h3>
-        <ul className="space-y-2 text-sm text-ink-muted">
+        <ul className="space-y-2 text-sm text-[var(--text-secondary)]">
           <li>· 账号系统、播放器、好感度、公告生日模块互相独立</li>
           <li>· 各模块可单独启用 / 关闭 / 卸载</li>
           <li>· 卸载方式：删除对应前端文件夹 + 移除 Layout 引入 + 删除对应后端路由 + DROP 数据表</li>
@@ -185,18 +185,18 @@ function Toggle({
         type="button"
         onClick={() => onChange(!checked)}
         className={`mt-0.5 flex h-6 w-11 flex-shrink-0 items-center rounded-full p-0.5 transition ${
-          checked ? "bg-neon-cyan/30" : "bg-base-600"
+          checked ? "bg-[var(--color-primary)]/30" : "bg-[var(--color-surface-2)]"
         }`}
       >
         <span
-          className={`h-5 w-5 rounded-full bg-white transition-transform ${
+          className={`h-5 w-5 rounded-full bg-[var(--text-primary)] transition-transform ${
             checked ? "translate-x-5" : "translate-x-0"
           }`}
         />
       </button>
       <div className="flex-1">
-        <div className="font-bold text-white">{label}</div>
-        <div className="text-xs text-ink-muted">{desc}</div>
+        <div className="font-bold text-[var(--text-primary)]">{label}</div>
+        <div className="text-xs text-[var(--text-secondary)]">{desc}</div>
       </div>
     </label>
   );
@@ -213,14 +213,14 @@ function TemplateInput({
 }) {
   return (
     <div>
-      <label className="mb-1 block text-xs font-bold text-neon-cyan">
+      <label className="mb-1 block text-xs font-bold text-[var(--color-primary)]">
         {label}
       </label>
       <textarea
         value={value}
         onChange={(e) => onChange(e.target.value)}
         rows={2}
-        className="w-full rounded border border-[var(--color-border)] bg-base-900/60 px-3 py-2 text-sm text-white"
+        className="w-full rounded border border-[var(--color-border)] bg-[var(--color-bg)]/60 px-3 py-2 text-sm text-[var(--text-primary)]"
       />
     </div>
   );

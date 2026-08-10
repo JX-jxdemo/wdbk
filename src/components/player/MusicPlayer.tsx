@@ -172,24 +172,24 @@ export default function MusicPlayer() {
         animate={{ y: 0, opacity: 1 }}
         className="fixed bottom-4 right-4 z-[60] w-[90%] max-w-sm"
       >
-        <div className="glass overflow-hidden rounded-xl border-neon-cyan/20">
+        <div className="glass overflow-hidden rounded-xl border-[var(--color-primary)]/20">
           {/* 顶部条 */}
           <div className="flex items-center justify-between border-b border-[var(--color-border)] px-3 py-2">
-            <div className="flex items-center gap-2 text-xs text-neon-cyan">
+            <div className="flex items-center gap-2 text-xs text-[var(--color-primary)]">
               <Music className="h-3.5 w-3.5" />
               <span className="font-mono">NOW PLAYING</span>
             </div>
             <div className="flex items-center gap-1">
               <button
                 onClick={() => setShowList((v) => !v)}
-                className="rounded p-1 text-ink-muted hover:text-neon-cyan"
+                className="rounded p-1 text-[var(--text-secondary)] hover:text-[var(--color-primary)]"
                 title="歌单"
               >
                 <ListMusic className="h-4 w-4" />
               </button>
               <button
                 onClick={() => setExpanded((v) => !v)}
-                className="rounded p-1 text-ink-muted hover:text-neon-cyan"
+                className="rounded p-1 text-[var(--text-secondary)] hover:text-[var(--color-primary)]"
                 title={expanded ? "收起" : "展开"}
               >
                 {expanded ? (
@@ -205,7 +205,7 @@ export default function MusicPlayer() {
           <div className="p-3">
             <div className="flex items-center gap-3">
               {/* 封面 */}
-              <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded border border-[var(--color-border)] bg-base-900">
+              <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded border border-[var(--color-border)] bg-[var(--color-bg)]">
                 {track.cover ? (
                   <img
                     src={track.cover}
@@ -217,23 +217,23 @@ export default function MusicPlayer() {
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center">
-                    <Music className="h-5 w-5 text-neon-cyan/60" />
+                    <Music className="h-5 w-5 text-[var(--color-primary)]/60" />
                   </div>
                 )}
               </div>
               {/* 信息 */}
               <div className="min-w-0 flex-1">
-                <div className="truncate text-sm font-bold text-white">
+                <div className="truncate text-sm font-bold text-[var(--text-primary)]">
                   {track.title}
                 </div>
-                <div className="truncate text-xs text-ink-muted">
+                <div className="truncate text-xs text-[var(--text-secondary)]">
                   {track.artist}
                 </div>
               </div>
             </div>
 
             {/* 进度条 */}
-            <div className="mt-3 flex items-center gap-2 text-[10px] font-mono text-ink-muted">
+            <div className="mt-3 flex items-center gap-2 text-[10px] font-mono text-[var(--text-secondary)]">
               <span>{fmtTime(progress)}</span>
               <input
                 type="range"
@@ -251,13 +251,13 @@ export default function MusicPlayer() {
               <div className="flex items-center gap-1">
                 <button
                   onClick={prev}
-                  className="rounded p-1.5 text-ink-muted hover:text-neon-cyan"
+                  className="rounded p-1.5 text-ink-muted hover:text-[var(--color-primary)]"
                 >
                   <SkipBack className="h-4 w-4" />
                 </button>
                 <button
                   onClick={playing ? pause : play}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-neon-cyan/40 bg-neon-cyan/10 text-neon-cyan hover:bg-neon-cyan/20"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-primary)]/40 bg-[var(--color-primary)]/10 text-[var(--color-primary)] hover:bg-[var(--color-primary)]/20"
                 >
                   {playing ? (
                     <Pause className="h-4 w-4" />
@@ -267,7 +267,7 @@ export default function MusicPlayer() {
                 </button>
                 <button
                   onClick={next}
-                  className="rounded p-1.5 text-ink-muted hover:text-neon-cyan"
+                  className="rounded p-1.5 text-ink-muted hover:text-[var(--color-primary)]"
                 >
                   <SkipForward className="h-4 w-4" />
                 </button>
@@ -279,7 +279,7 @@ export default function MusicPlayer() {
                       m === "list" ? "single" : m === "single" ? "shuffle" : "list"
                     )
                   }
-                  className="rounded p-1.5 text-ink-muted hover:text-neon-cyan"
+                  className="rounded p-1.5 text-ink-muted hover:text-[var(--color-primary)]"
                   title={
                     loopMode === "list"
                       ? "列表循环"
@@ -289,9 +289,9 @@ export default function MusicPlayer() {
                   }
                 >
                   {loopMode === "single" ? (
-                    <Repeat1 className="h-4 w-4 text-neon-cyan" />
+                    <Repeat1 className="h-4 w-4 text-[var(--color-primary)]" />
                   ) : loopMode === "shuffle" ? (
-                    <Shuffle className="h-4 w-4 text-neon-cyan" />
+                    <Shuffle className="h-4 w-4 text-[var(--color-primary)]" />
                   ) : (
                     <Repeat className="h-4 w-4" />
                   )}
@@ -299,7 +299,7 @@ export default function MusicPlayer() {
                 <div className="flex items-center gap-1">
                   <button
                     onClick={() => setVolume((v) => (v > 0 ? 0 : 60))}
-                    className="rounded p-1.5 text-ink-muted hover:text-neon-cyan"
+                    className="rounded p-1.5 text-ink-muted hover:text-[var(--color-primary)]"
                   >
                     {volume === 0 ? (
                       <VolumeX className="h-4 w-4" />
@@ -328,14 +328,14 @@ export default function MusicPlayer() {
                   exit={{ height: 0, opacity: 0 }}
                   className="overflow-hidden"
                 >
-                  <div className="mt-3 border-t border-[var(--color-border)] pt-3 text-xs text-ink-muted">
+                  <div className="mt-3 border-t border-[var(--color-border)] pt-3 text-xs text-[var(--text-secondary)]">
                     <div className="flex items-center justify-between">
                       <span>当前曲目</span>
-                      <span className="font-mono text-neon-cyan">
+                      <span className="font-mono text-[var(--color-primary)]">
                         {idx + 1} / {config.playlist.length}
                       </span>
                     </div>
-                    <div className="mt-1 truncate font-mono text-white">
+                    <div className="mt-1 truncate font-mono text-[var(--text-primary)]">
                       {track.title} - {track.artist}
                     </div>
                   </div>
@@ -363,13 +363,13 @@ export default function MusicPlayer() {
                         className={cn(
                           "flex w-full items-center gap-2 rounded px-2 py-1.5 text-left text-xs transition",
                           i === idx
-                            ? "bg-neon-cyan/10 text-neon-cyan"
-                            : "text-ink-muted hover:bg-white/5 hover:text-white"
+                            ? "bg-[var(--color-primary)]/10 text-[var(--color-primary)]"
+                            : "text-[var(--text-secondary)] hover:bg-[var(--text-primary)]/5 hover:text-[var(--text-primary)]"
                         )}
                       >
                         <span className="font-mono">{i + 1}.</span>
                         <span className="truncate">{t.title}</span>
-                        <span className="ml-auto truncate text-[10px] text-ink-faint">
+                        <span className="ml-auto truncate text-[10px] text-[var(--text-faint)]">
                           {t.artist}
                         </span>
                       </button>

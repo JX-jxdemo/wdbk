@@ -80,38 +80,38 @@ export default function AdminMusic() {
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="font-display text-2xl font-bold text-white">
+        <h1 className="font-heading text-2xl font-bold text-[var(--text-primary)]">
           音乐播放器配置
         </h1>
         <button
           onClick={save}
           disabled={saving}
-          className="rounded border border-neon-cyan/40 bg-neon-cyan/10 px-4 py-2 text-sm font-bold text-neon-cyan hover:bg-neon-cyan/20 disabled:opacity-50"
+          className="rounded border border-[var(--color-primary)]/40 bg-[var(--color-primary)]/10 px-4 py-2 text-sm font-bold text-[var(--color-primary)] hover:bg-[var(--color-primary)]/20 disabled:opacity-50"
         >
           {saving ? "保存中..." : "保存配置"}
         </button>
       </div>
       {msg && (
-        <div className="mb-4 rounded border border-neon-cyan/30 bg-neon-cyan/10 px-3 py-2 text-sm text-neon-cyan">
+        <div className="mb-4 rounded border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-3 py-2 text-sm text-[var(--color-primary)]">
           {msg}
         </div>
       )}
 
       {/* 基础开关 */}
       <div className="glass mb-4 rounded-xl p-5">
-        <h3 className="mb-3 font-bold text-white">基础设置</h3>
+        <h3 className="mb-3 font-bold text-[var(--text-primary)]">基础设置</h3>
         <div className="grid gap-4 sm:grid-cols-3">
-          <label className="flex items-center gap-2 text-sm text-ink-muted">
+          <label className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
             <input
               type="checkbox"
               checked={cfg.enabled}
               onChange={(e) => update({ enabled: e.target.checked })}
-              className="accent-[var(--neon-cyan)]"
+              className="accent-[var(--color-primary)]"
             />
             启用播放器
           </label>
           <div>
-            <label className="mb-1 block text-xs text-ink-muted">
+            <label className="mb-1 block text-xs text-[var(--text-secondary)]">
               默认音量: {cfg.defaultVolume}
             </label>
             <input
@@ -124,13 +124,13 @@ export default function AdminMusic() {
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs text-ink-muted">循环模式</label>
+            <label className="mb-1 block text-xs text-[var(--text-secondary)]">循环模式</label>
             <select
               value={cfg.loopMode}
               onChange={(e) =>
                 update({ loopMode: e.target.value as Config["loopMode"] })
               }
-              className="w-full rounded border border-[var(--color-border)] bg-base-900/60 px-3 py-2 text-sm text-white"
+              className="w-full rounded border border-[var(--color-border)] bg-[var(--color-bg)]/60 px-3 py-2 text-sm text-[var(--text-primary)]"
             >
               <option value="list">列表循环</option>
               <option value="single">单曲循环</option>
@@ -143,13 +143,13 @@ export default function AdminMusic() {
       {/* 歌单管理 */}
       <div className="glass rounded-xl p-5">
         <div className="mb-3 flex items-center justify-between">
-          <h3 className="flex items-center gap-2 font-bold text-white">
-            <Music className="h-4 w-4 text-neon-cyan" />
+          <h3 className="flex items-center gap-2 font-bold text-[var(--text-primary)]">
+            <Music className="h-4 w-4 text-[var(--color-primary)]" />
             歌单 ({cfg.playlist.length})
           </h3>
           <button
             onClick={addTrack}
-            className="flex items-center gap-1 rounded border border-neon-cyan/40 bg-neon-cyan/10 px-3 py-1 text-xs text-neon-cyan hover:bg-neon-cyan/20"
+            className="flex items-center gap-1 rounded border border-[var(--color-primary)]/40 bg-[var(--color-primary)]/10 px-3 py-1 text-xs text-[var(--color-primary)] hover:bg-[var(--color-primary)]/20"
           >
             <Plus className="h-3 w-3" /> 添加
           </button>
@@ -165,39 +165,39 @@ export default function AdminMusic() {
                 value={t.title}
                 onChange={(e) => updateTrack(i, { title: e.target.value })}
                 placeholder="歌曲名"
-                className="rounded border border-[var(--color-border)] bg-base-900/60 px-2 py-1 text-sm text-white"
+                className="rounded border border-[var(--color-border)] bg-[var(--color-bg)]/60 px-2 py-1 text-sm text-[var(--text-primary)]"
               />
               <input
                 type="text"
                 value={t.artist}
                 onChange={(e) => updateTrack(i, { artist: e.target.value })}
                 placeholder="艺术家"
-                className="rounded border border-[var(--color-border)] bg-base-900/60 px-2 py-1 text-sm text-white"
+                className="rounded border border-[var(--color-border)] bg-[var(--color-bg)]/60 px-2 py-1 text-sm text-[var(--text-primary)]"
               />
               <input
                 type="text"
                 value={t.src}
                 onChange={(e) => updateTrack(i, { src: e.target.value })}
                 placeholder="音频 URL"
-                className="rounded border border-[var(--color-border)] bg-base-900/60 px-2 py-1 text-sm text-white"
+                className="rounded border border-[var(--color-border)] bg-[var(--color-bg)]/60 px-2 py-1 text-sm text-[var(--text-primary)]"
               />
               <input
                 type="text"
                 value={t.cover || ""}
                 onChange={(e) => updateTrack(i, { cover: e.target.value })}
                 placeholder="封面 URL"
-                className="rounded border border-[var(--color-border)] bg-base-900/60 px-2 py-1 text-sm text-white"
+                className="rounded border border-[var(--color-border)] bg-[var(--color-bg)]/60 px-2 py-1 text-sm text-[var(--text-primary)]"
               />
               <button
                 onClick={() => removeTrack(i)}
-                className="rounded p-1.5 text-ink-muted hover:text-neon-magenta"
+                className="rounded p-1.5 text-[var(--text-secondary)] hover:text-[#f97316]"
               >
                 <Trash2 className="h-4 w-4" />
               </button>
             </div>
           ))}
           {cfg.playlist.length === 0 && (
-            <div className="py-8 text-center text-sm text-ink-muted">
+            <div className="py-8 text-center text-sm text-[var(--text-secondary)]">
               暂无歌曲，点击「添加」开始
             </div>
           )}

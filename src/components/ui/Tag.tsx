@@ -9,12 +9,12 @@ interface TagProps {
 }
 
 const colorMap = {
-  cyan: "border-neon-cyan/40 text-neon-cyan hover:bg-neon-cyan/10",
-  magenta: "border-neon-magenta/40 text-neon-magenta hover:bg-neon-magenta/10",
-  purple: "border-neon-purple/40 text-neon-purple hover:bg-neon-purple/10",
-  green: "border-neon-green/40 text-neon-green hover:bg-neon-green/10",
-  amber: "border-neon-amber/40 text-neon-amber hover:bg-neon-amber/10",
-  muted: "border-white/10 text-ink-muted hover:text-white hover:border-white/30",
+  cyan: "border-[var(--color-primary)]/40 text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10",
+  magenta: "border-[#f97316]/40 text-[#f97316] hover:bg-[#f97316]/10",
+  purple: "border-[#8b5cf6]/40 text-[#8b5cf6] hover:bg-[#8b5cf6]/10",
+  green: "border-[#22c55e]/40 text-[#22c55e] hover:bg-[#22c55e]/10",
+  amber: "border-[#f59e0b]/40 text-[#f59e0b] hover:bg-[#f59e0b]/10",
+  muted: "border-[var(--color-border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--color-border-hover)]",
 };
 
 export default function Tag({
@@ -32,7 +32,7 @@ export default function Tag({
       className={cn(
         "inline-flex items-center rounded border px-2.5 py-1 font-mono text-xs transition-all duration-200",
         colorMap[color],
-        active && "bg-neon-cyan/15 shadow-neon-cyan",
+        active && "bg-[var(--color-primary)]/15",
         onClick && "cursor-pointer",
         className
       )}

@@ -120,14 +120,14 @@ export default function LikePage() {
       >
         {/* 标题 */}
         <div className="mb-8 text-center">
-          <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-neon-magenta/30 bg-neon-magenta/5 px-4 py-1 text-xs font-mono text-neon-magenta">
+          <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-[#f97316]/30 bg-[#f97316]/5 px-4 py-1 text-xs font-mono text-[#f97316]">
             <Sparkles className="h-3 w-3" />
             LIKE SPACE
           </div>
-          <h1 className="font-display text-4xl font-bold text-white sm:text-5xl">
-            好感<span className="text-gradient-neon">空间</span>
+          <h1 className="font-heading text-4xl font-bold text-[var(--text-primary)] sm:text-5xl">
+            好感<span className="text-gradient-sky">空间</span>
           </h1>
-          <p className="mt-2 text-sm text-ink-muted">
+          <p className="mt-2 text-sm text-[var(--text-secondary)]">
             每一次互动都会让我们的距离更近一步
           </p>
         </div>
@@ -163,7 +163,7 @@ export default function LikePage() {
                 key={currentValue}
                 initial={{ scale: 1.2 }}
                 animate={{ scale: 1 }}
-                className="font-display text-7xl font-bold sm:text-8xl"
+                className="font-heading text-7xl font-bold sm:text-8xl"
                 style={{
                   color: currentColor,
                   textShadow: `0 0 24px ${currentColor}80`,
@@ -171,7 +171,7 @@ export default function LikePage() {
               >
                 {currentValue}
               </motion.div>
-              <div className="mt-2 font-mono text-xs text-ink-muted">
+              <div className="mt-2 font-mono text-xs text-[var(--text-secondary)]">
                 当前好感值
               </div>
             </div>
@@ -184,7 +184,7 @@ export default function LikePage() {
                 className={cn(
                   "flex h-14 w-14 items-center justify-center rounded-full border-2 transition-all",
                   canAct
-                    ? "border-neon-magenta/40 bg-neon-magenta/10 text-neon-magenta hover:bg-neon-magenta/20 hover:scale-110"
+                    ? "border-[#f97316]/40 bg-[#f97316]/10 text-[#f97316] hover:bg-[#f97316]/20 hover:scale-110"
                     : "cursor-not-allowed border-ink-faint/20 text-ink-faint/40"
                 )}
                 aria-label="减少好感"
@@ -198,7 +198,7 @@ export default function LikePage() {
                 className={cn(
                   "flex h-16 w-16 items-center justify-center rounded-full border-2 transition-all",
                   canAct
-                    ? "border-neon-cyan/40 bg-neon-cyan/10 text-neon-cyan hover:bg-neon-cyan/20 hover:scale-110"
+                    ? "border-[var(--color-primary)]/40 bg-[var(--color-primary)]/10 text-[var(--color-primary)] hover:bg-[var(--color-primary)]/20 hover:scale-110"
                     : "cursor-not-allowed border-ink-faint/20 text-ink-faint/40"
                 )}
                 aria-label="增加好感"
@@ -210,28 +210,28 @@ export default function LikePage() {
             {/* 提示区 */}
             <div className="mt-6 min-h-[2rem] text-center text-sm">
               {isGuest ? (
-                <div className="flex items-center justify-center gap-2 text-ink-muted">
+                <div className="flex items-center justify-center gap-2 text-[var(--text-secondary)]">
                   <Lock className="h-4 w-4" />
                   <span>登录后可操作好感度</span>
                   <Link
                     to="/"
-                    className="ml-2 inline-flex items-center gap-1 rounded border border-neon-cyan/40 bg-neon-cyan/10 px-3 py-1 text-neon-cyan hover:bg-neon-cyan/20"
+                    className="ml-2 inline-flex items-center gap-1 rounded border border-[var(--color-primary)]/40 bg-[var(--color-primary)]/10 px-3 py-1 text-[var(--color-primary)] hover:bg-[var(--color-primary)]/20"
                   >
                     <LogIn className="h-3 w-3" /> 去登录
                   </Link>
                 </div>
               ) : cooldown > 0 ? (
-                <div className="flex items-center justify-center gap-2 text-neon-amber">
+                <div className="flex items-center justify-center gap-2 text-[#f59e0b]">
                   <Clock className="h-4 w-4 animate-pulse" />
                   <span className="font-mono">冷却中：{cooldown}s</span>
                 </div>
               ) : (
-                <div className="text-ink-muted">
+                <div className="text-[var(--text-secondary)]">
                   点击 + / - 调整好感值（每次 ±1）
                 </div>
               )}
               {error && (
-                <div className="mt-2 text-neon-magenta">{error}</div>
+                <div className="mt-2 text-[#f97316]">{error}</div>
               )}
             </div>
           </div>
@@ -240,7 +240,7 @@ export default function LikePage() {
         {/* 等级表 */}
         {meta && (
           <div className="mt-8">
-            <h3 className="mb-4 font-display text-lg font-bold text-white">
+            <h3 className="mb-4 font-heading text-lg font-bold text-[var(--text-primary)]">
               等级阶梯
             </h3>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -269,7 +269,7 @@ export default function LikePage() {
                       <Heart className="h-3 w-3" fill={l.color} />
                       Lv.{l.level} {l.name}
                     </div>
-                    <div className="mt-1 font-mono text-xs text-ink-muted">
+                    <div className="mt-1 font-mono text-xs text-[var(--text-secondary)]">
                       {l.min}-{l.max === 1e9 ? "∞" : l.max}
                     </div>
                   </div>
@@ -286,11 +286,11 @@ export default function LikePage() {
 function NotFoundInline() {
   return (
     <div className="section-py container flex flex-col items-center justify-center text-center">
-      <div className="font-display text-6xl font-bold text-neon-magenta">404</div>
-      <div className="mt-2 text-ink-muted">好感空间已关闭</div>
+      <div className="font-heading text-6xl font-bold text-[#f97316]">404</div>
+      <div className="mt-2 text-[var(--text-secondary)]">好感空间已关闭</div>
       <Link
         to="/"
-        className="mt-6 rounded border border-neon-cyan/40 bg-neon-cyan/10 px-4 py-2 text-neon-cyan hover:bg-neon-cyan/20"
+        className="mt-6 rounded border border-[var(--color-primary)]/40 bg-[var(--color-primary)]/10 px-4 py-2 text-[var(--color-primary)] hover:bg-[var(--color-primary)]/20"
       >
         返回首页
       </Link>

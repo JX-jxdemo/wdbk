@@ -12,7 +12,7 @@ export default function Timeline({ items }: { items: TimelineItem[] }) {
   return (
     <div className="relative">
       {/* 垂直线 */}
-      <div className="absolute left-[19px] top-2 bottom-2 w-px bg-gradient-to-b from-neon-cyan via-neon-purple to-neon-magenta opacity-30" />
+      <div className="absolute left-[19px] top-2 bottom-2 w-px bg-gradient-to-b from-[var(--color-primary)] via-[#8b5cf6] to-[#f97316] opacity-30" />
 
       <div className="space-y-8">
         {items.map((item, i) => {
@@ -29,7 +29,7 @@ export default function Timeline({ items }: { items: TimelineItem[] }) {
               className="relative flex gap-6"
             >
               {/* 节点 */}
-              <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 bg-base-900" style={{ borderColor: config.color }}>
+              <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 bg-[var(--color-bg)]" style={{ borderColor: config.color }}>
                 <Icon className="h-4 w-4" style={{ color: config.color }} />
                 {/* 发光 */}
                 <div
@@ -49,13 +49,13 @@ export default function Timeline({ items }: { items: TimelineItem[] }) {
                   </span>
                   <span className="h-px flex-1 bg-[var(--color-border)]" />
                 </div>
-                <h3 className="mt-2 font-heading text-lg font-bold text-white">
+                <h3 className="mt-2 font-heading text-lg font-bold text-[var(--text-primary)]">
                   {item.title}
                 </h3>
-                <div className="mt-0.5 font-mono text-xs text-neon-cyan">
+                <div className="mt-0.5 font-mono text-xs text-[var(--color-primary)]">
                   {item.org}
                 </div>
-                <p className="mt-2 text-sm text-ink-muted">{item.description}</p>
+                <p className="mt-2 text-sm text-[var(--text-secondary)]">{item.description}</p>
               </div>
             </motion.div>
           );
