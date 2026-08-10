@@ -112,7 +112,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
 export default function Projects() {
   return (
-    <div className="pt-24">
+    <div className="relative z-20 bg-[rgba(30,41,59,0.55)] pt-24 backdrop-blur-[10px]">
       {/* Banner */}
       <section className="relative overflow-hidden border-b border-[var(--color-border)]">
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#f97316] to-transparent" />

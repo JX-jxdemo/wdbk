@@ -4,7 +4,7 @@ import { Home, TerminalSquare } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-24">
+    <section className="relative z-20 flex min-h-screen items-center justify-center overflow-hidden bg-[rgba(30,41,59,0.55)] pt-24 backdrop-blur-[10px]">
 
       <motion.div
         className="absolute left-1/4 top-1/3 h-64 w-64 rounded-full bg-[#f97316]/20 blur-3xl"

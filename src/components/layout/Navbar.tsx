@@ -5,7 +5,6 @@ import { Menu, X, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSite } from "@/contexts/SiteContext";
 import AccountMenu from "@/components/account/AccountMenu";
-import ThemeToggle from "@/components/account/ThemeToggle";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -50,7 +49,7 @@ export default function Navbar() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        style={{ top: "var(--notice-banner-h, 0px)" }}
+        style={{ top: "var(--notice-banner-h, 0px)", background: scrolled ? "#1e293b" : "rgba(30,41,59,0.3)", transition: "background 0.3s ease" }}
         className={cn(
           "fixed inset-x-0 z-50 transition-all duration-300",
           scrolled
@@ -60,7 +59,6 @@ export default function Navbar() {
       >
         <nav
           className="container flex items-center justify-between gap-4"
-          style={{ background: scrolled ? "rgba(255,255,255,0.75)" : "transparent", borderRadius: scrolled ? "12px" : "0", transition: "background 0.3s ease" }}
         >
           <Link to="/" className="flex items-center gap-2">
             <span
@@ -103,7 +101,6 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-2">
-            <ThemeToggle />
             <AccountMenu />
             <button
               onClick={() => setMenuOpen((v) => !v)}

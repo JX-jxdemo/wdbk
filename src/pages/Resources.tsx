@@ -298,7 +298,7 @@ export default function Resources() {
   };
 
   return (
-    <div className="pt-24">
+    <div className="relative z-20 bg-[rgba(30,41,59,0.55)] pt-24 backdrop-blur-[10px]">
       <section className="border-b border-[var(--color-border)]">
         <div className="container py-12 sm:py-16">
           <motion.div
@@ -343,7 +343,7 @@ export default function Resources() {
         </div>
       </section>
 
-      <section className="border-b border-[var(--color-border)] bg-[var(--color-surface-2)]">
+      <section className="border-b border-[var(--color-border)]">
         <div className="container py-4">
           <div className="flex flex-wrap items-center gap-2">
             <button

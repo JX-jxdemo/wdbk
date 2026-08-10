@@ -37,7 +37,7 @@ export default function About() {
   });
 
   return (
-    <div className="pt-24">
+    <div className="relative z-20 bg-[rgba(30,41,59,0.55)] pt-24 backdrop-blur-[10px]">
       <section className="border-b border-[var(--color-border)]">
         <div className="container py-12 sm:py-16">
           <div className="grid items-center gap-12 lg:grid-cols-[1fr_2fr]">

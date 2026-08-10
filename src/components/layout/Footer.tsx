@@ -9,8 +9,8 @@ const socials = [
 export default function Footer() {
   return (
     <footer
-      className="border-t border-[var(--color-border)]"
-      style={{ background: "var(--color-surface-2)" }}
+      className="relative z-20 border-t border-[var(--color-border)] backdrop-blur-[10px]"
+      style={{ background: "rgba(30, 41, 59, 0.55)" }}
     >
       <div className="container py-10">
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">

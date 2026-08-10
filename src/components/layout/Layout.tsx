@@ -3,8 +3,6 @@ import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import GradientMesh from "@/components/effects/GradientMesh";
-import ScanLines from "@/components/effects/ScanLines";
 import CustomCursor from "@/components/shared/CustomCursor";
 // 模块独立引入：删除下方两行 + 文件夹即可完整移除音乐播放器与公告横幅
 import MusicPlayer from "@/components/player";
@@ -15,9 +13,6 @@ export default function Layout({ children }: { children: ReactNode }) {
 
   return (
     <div className="relative min-h-screen">
-      {/* 背景层 */}
-      <GradientMesh />
-      <ScanLines />
       <CustomCursor />
 
       {/* 公告横幅（顶部通栏） */}

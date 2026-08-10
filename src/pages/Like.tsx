@@ -83,8 +83,10 @@ export default function LikePage() {
 
   if (loading) {
     return (
-      <div className="section-py container flex items-center justify-center">
-        <div className="font-mono text-ink-muted">加载中...</div>
+      <div className="relative z-20 bg-[rgba(30,41,59,0.55)] pt-24 backdrop-blur-[10px] min-h-screen">
+        <div className="section-py container flex items-center justify-center">
+          <div className="font-mono text-ink-muted">加载中...</div>
+        </div>
       </div>
     );
   }
@@ -112,7 +114,8 @@ export default function LikePage() {
   const currentColor = state?.color ?? "#a1a1aa";
 
   return (
-    <div className="section-py container">
+    <div className="relative z-20 bg-[rgba(30,41,59,0.55)] pt-24 backdrop-blur-[10px]">
+      <div className="section-py container">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -279,21 +282,24 @@ export default function LikePage() {
           </div>
         )}
       </motion.div>
+      </div>
     </div>
   );
 }
 
 function NotFoundInline() {
   return (
-    <div className="section-py container flex flex-col items-center justify-center text-center">
-      <div className="font-heading text-6xl font-bold text-[#f97316]">404</div>
-      <div className="mt-2 text-[var(--text-secondary)]">好感空间已关闭</div>
-      <Link
-        to="/"
-        className="mt-6 rounded border border-[var(--color-primary)]/40 bg-[var(--color-primary)]/10 px-4 py-2 text-[var(--color-primary)] hover:bg-[var(--color-primary)]/20"
-      >
-        返回首页
-      </Link>
+    <div className="relative z-20 bg-[rgba(30,41,59,0.55)] pt-24 backdrop-blur-[10px] min-h-screen">
+      <div className="section-py container flex flex-col items-center justify-center text-center">
+        <div className="font-heading text-6xl font-bold text-[#f97316]">404</div>
+        <div className="mt-2 text-[var(--text-secondary)]">好感空间已关闭</div>
+        <Link
+          to="/"
+          className="mt-6 rounded border border-[var(--color-primary)]/40 bg-[var(--color-primary)]/10 px-4 py-2 text-[var(--color-primary)] hover:bg-[var(--color-primary)]/20"
+        >
+          返回首页
+        </Link>
+      </div>
     </div>
   );
 }

@@ -34,7 +34,7 @@ export default function Blog() {
   }, [activeCategory, activeTag, searchTerm]);
 
   return (
-    <div className="pt-24">
+    <div className="relative z-20 bg-[rgba(30,41,59,0.55)] pt-24 backdrop-blur-[10px]">
       <section className="border-b border-[var(--color-border)]">
         <div className="container py-12 sm:py-16">
           <motion.div
@@ -67,7 +67,7 @@ export default function Blog() {
         </div>
       </section>
 
-      <section className="border-b border-[var(--color-border)] bg-[var(--color-surface-2)]">
+      <section className="border-b border-[var(--color-border)]">
         <div className="container space-y-5 py-6">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex flex-wrap gap-2">

@@ -49,7 +49,7 @@ export default function ArticleDetail() {
     <>
       <ReadingProgress />
 
-      <article className="pt-24">
+      <article className="relative z-20 bg-[rgba(30,41,59,0.55)] pt-24 backdrop-blur-[10px]">
         {/* 文章头部 */}
         <header className="relative overflow-hidden border-b border-[var(--color-border)]">
           <div className="container relative z-10 py-12">
