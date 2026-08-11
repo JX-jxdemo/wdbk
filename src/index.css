@@ -34,6 +34,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -49,6 +50,46 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ==================== 移动端适配 ==================== */
+/* dvh 兼容：不支持 dvh 的浏览器回退到 vh */
+@supports not (height: 100dvh) {
+  .h-\[100dvh\] {
+    height: 100vh !important;
+  }
+  .min-h-\[85dvh\] {
+    min-height: 85vh !important;
+  }
+}
+
+/* 防止移动端 100vw 导致横向滚动 */
+@media (max-width: 768px) {
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* iOS: 输入框 font-size < 16px 会触发自动缩放 */
+  .input-field,
+  input[type="text"],
+  input[type="password"],
+  input[type="search"],
+  textarea {
+    font-size: 16px !important;
+  }
+
+  /* 移动端减小樱花粒子数量以提升性能（通过减少 canvas 渲染压力） */
+  /* 移动端内容区域内边距适配 */
+  .section-py {
+    padding-top: 5.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  /* iPhone 刘海屏安全区适配 */
+  footer {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
 
 /* ==================== 自定义滚动条 ==================== */

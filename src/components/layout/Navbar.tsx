@@ -49,7 +49,7 @@ export default function Navbar() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        style={{ top: "var(--notice-banner-h, 0px)", background: scrolled ? "#1e293b" : "rgba(30,41,59,0.3)", transition: "background 0.3s ease" }}
+        style={{ top: "var(--notice-banner-h, 0px)", background: scrolled ? "rgba(30,41,59,0.9)" : "rgba(30,41,59,0.55)", transition: "background 0.3s ease" }}
         className={cn(
           "fixed inset-x-0 z-50 transition-all duration-300",
           scrolled
@@ -104,7 +104,7 @@ export default function Navbar() {
             <AccountMenu />
             <button
               onClick={() => setMenuOpen((v) => !v)}
-              className="flex h-10 w-10 items-center justify-center rounded-lg border md:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-lg border md:hidden"
               style={{
                 borderColor: "var(--color-border)",
                 color: "var(--color-primary)",

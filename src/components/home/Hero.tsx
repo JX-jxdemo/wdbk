@@ -9,7 +9,7 @@ export default function Hero() {
     <section className="relative overflow-hidden">
       {/* 全屏视频背景 - 固定不动（使用 portal 式的 fixed 定位，不受父级 stacking context 影响） */}
       <video
-        className="fixed inset-0 z-0 h-screen w-screen object-cover"
+        className="fixed inset-0 z-0 h-[100dvh] w-full object-cover"
         autoPlay
         loop
         muted
@@ -24,7 +24,7 @@ export default function Hero() {
       <CherryBlossomCanvas />
 
       {/* 内容 - 在最上层 */}
-      <div className="relative z-20 flex min-h-[85vh] flex-col items-center justify-center px-4 py-24 text-center">
+      <div className="relative z-20 flex min-h-[85dvh] flex-col items-center justify-center px-4 py-20 text-center sm:py-24">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -38,10 +38,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="max-w-4xl font-heading text-5xl font-black leading-tight text-white drop-shadow-2xl sm:text-6xl md:text-7xl lg:text-8xl"
+          className="max-w-4xl font-heading text-4xl font-black leading-tight text-white drop-shadow-2xl sm:text-6xl md:text-7xl lg:text-8xl"
         >
           <span className="block text-gradient-glow">NEON.DEV</span>
-          <span className="mt-2 block text-3xl font-medium tracking-wide text-white/80 sm:text-4xl md:text-5xl">
+          <span className="mt-2 block text-2xl font-medium tracking-wide text-white/80 sm:text-4xl md:text-5xl">
             记忆终端
           </span>
         </motion.h1>
@@ -150,7 +150,7 @@ function CherryBlossomCanvas() {
     }
 
     const petals: Petal[] = [];
-    const PETAL_COUNT = 30;
+    const PETAL_COUNT = window.innerWidth < 768 ? 15 : 30;
 
     const create = (init = false): Petal => ({
       x: Math.random() * canvas.width,

@@ -24,8 +24,8 @@ export default function Layout({ children }: { children: ReactNode }) {
       {/* 主内容 + 页面过渡 */}
       <motion.main
         key={location.pathname}
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
         className="relative"
       >
